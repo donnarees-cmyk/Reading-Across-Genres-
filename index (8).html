@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FAST Genres & Vocabulary</title>
+<meta name="description" content="Grade 6 FAST tutorial: Reading Across Genres and Vocabulary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#16244f; --navy2:#22357a; --gold:#f5b70a; --gold2:#ffd75e;
+  --ink:#1d2340; --muted:#5b6386; --bg:#f4f1ff; --card:#ffffff; --line:#e3e1f2;
+  --good:#16a34a; --goodbg:#e7f9ee; --bad:#dc2626; --badbg:#fdecec; --warn:#b45309; --warnbg:#fff4dc;
+  --accent:#7b3fe4; --accent2:#ff5fa2; --accentbg:#f1e9ff;
+  --r:18px; --shadow:0 6px 0 rgba(22,36,79,.10), 0 10px 24px rgba(22,36,79,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);background-image:radial-gradient(circle at 10% 0%,rgba(255,255,255,.9),transparent 40%),radial-gradient(circle at 100% 20%,var(--accentbg),transparent 45%);color:var(--ink);font-family:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.55;min-height:100vh;-webkit-text-size-adjust:100%}
+h1,h2,h3,h4,.fred{font-family:"Fredoka","Nunito",system-ui,sans-serif;line-height:1.2;margin:0}
+button{font-family:inherit;font-size:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+input{font-family:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+
+/* top bar */
+.top{background:var(--navy);color:#fff;position:sticky;top:0;z-index:20;box-shadow:0 3px 0 var(--gold)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand img{height:52px;width:auto;background:#fff;border-radius:10px;padding:3px}
+.wordmark{font-family:"Fredoka",sans-serif;font-weight:600;line-height:1.05;font-size:15px;color:var(--gold2)}
+.wordmark b{display:block;color:#fff;font-size:19px;letter-spacing:.5px}
+.brand .ttl{font-family:"Fredoka",sans-serif;font-size:17px;font-weight:500;opacity:.95;border-left:2px solid rgba(255,255,255,.25);padding-left:10px}
+.stats{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:999px;padding:4px 10px;font-weight:800;font-size:15px;white-space:nowrap}
+.chip.gold{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.ibtn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:12px;padding:5px 10px;font-weight:800;font-size:15px}
+.saved{font-size:13px;color:#b9f3c9;opacity:0;transition:opacity .4s;white-space:nowrap}
+.saved.on{opacity:1}
+.xpbar{height:8px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;width:100%}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:99px;transition:width .6s}
+.lvlrow{width:100%;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:800;color:var(--gold2)}
+.lvlrow .xpbar{flex:1}
+
+main{padding:22px 0 40px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;border:2px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:stretch}
+.hero h1{font-size:34px;color:var(--navy)}
+.hero .kicker{display:inline-block;background:var(--accent);color:#fff;border-radius:999px;padding:3px 12px;font-weight:800;font-size:14px;margin-bottom:10px}
+.hero p{margin:.6em 0}
+.namebox{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.namebox input{flex:1;min-width:160px;font-size:20px;padding:10px 14px;border-radius:14px;border:3px solid var(--line);outline:none}
+.namebox input:focus{border-color:var(--accent)}
+.btn{border:none;border-radius:14px;padding:12px 20px;font-weight:900;font-size:18px;background:var(--accent);color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.18);transition:transform .08s}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.ghost{background:#fff;color:var(--navy);border:3px solid var(--line);box-shadow:none}
+.btn.green{background:var(--good)}
+.btn.sm{padding:8px 14px;font-size:16px}
+.btn[disabled]{opacity:.45;pointer-events:none}
+.say{border:2px solid var(--accent);background:var(--accentbg);color:var(--accent);border-radius:999px;padding:5px 12px;font-weight:900;font-size:15px;white-space:nowrap}
+.say.on{background:var(--accent);color:#fff}
+.howto{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:none}
+.howto h3{color:var(--gold2);margin-bottom:8px}
+.howto ul{margin:0;padding-left:0;list-style:none}
+.howto li{margin:6px 0;padding-left:34px;position:relative}
+.howto li span{position:absolute;left:0;top:0;font-size:22px}
+
+.sect{display:flex;align-items:center;gap:10px;margin:26px 0 12px;flex-wrap:wrap}
+.sect h2{font-size:24px;color:var(--navy)}
+.sect .sub{color:var(--muted);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.lockc{position:relative;text-align:left;background:#fff;border:3px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:6px;transition:transform .12s,border-color .12s;color:var(--ink)}
+.lockc:hover{transform:translateY(-3px);border-color:var(--accent)}
+.lockc .ic{font-size:36px;line-height:1}
+.lockc h3{font-size:20px;color:var(--navy)}
+.lockc .code{font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.3px}
+.lockc .sk{font-size:15px;color:var(--muted)}
+.lockc .st{margin-top:auto;display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px}
+.pill{border-radius:999px;padding:3px 10px;font-weight:900;font-size:13px}
+.pill.new{background:#eef0fb;color:var(--navy2)}
+.pill.go{background:var(--warnbg);color:var(--warn)}
+.pill.done{background:var(--goodbg);color:var(--good)}
+.lockc .keyabs{position:absolute;top:10px;right:10px}
+.badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid var(--line);border-radius:14px;padding:8px 12px;font-weight:800;font-size:15px}
+.badge .e{font-size:24px}
+.badge.lock{opacity:.4;filter:grayscale(1)}
+.badge small{display:block;font-weight:600;color:var(--muted);font-size:12px}
+.vaultcta{margin-top:20px;text-align:center;background:linear-gradient(135deg,#fff7d6,#ffe9a8);border:3px solid var(--gold)}
+.vaultcta h2{color:var(--navy);margin-bottom:6px}
+
+/* lock view */
+.lockhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.lockhead .ic{font-size:40px}
+.lockhead h2{font-size:26px;color:var(--navy)}
+.lockhead .code{font-size:13px;font-weight:800;color:var(--muted)}
+.steps{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.stp{border:2px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-weight:900;font-size:14px;color:var(--muted)}
+.stp.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.stp.ok{background:var(--goodbg);border-color:#a7e3bd;color:var(--good)}
+.lcard{max-width:860px;margin:0 auto}
+.lcard .chead{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.lcard .chead h3{font-size:24px;color:var(--navy);flex:1;min-width:200px}
+.tag{display:inline-block;border-radius:999px;padding:3px 12px;font-weight:900;font-size:13px;background:var(--accentbg);color:var(--accent)}
+.cbody p{margin:.5em 0}
+.cbody .big{font-size:21px}
+.callout{border-radius:14px;padding:12px 16px;margin:12px 0;border-left:6px solid var(--accent);background:var(--accentbg)}
+.callout.gold{border-color:var(--gold);background:#fff7dd}
+.callout.green{border-color:var(--good);background:var(--goodbg)}
+.terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.term{border:2px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff}
+.term b{display:block;color:var(--accent);font-size:18px}
+.term span{font-size:16px}
+.flip{cursor:pointer;min-height:92px;position:relative}
+.flip .back{display:none}
+.flip.open .front{display:none}
+.flip.open .back{display:block}
+.flip .front{font-family:"Fredoka",sans-serif;font-size:20px;color:var(--navy);display:flex;align-items:center;justify-content:center;height:100%;text-align:center;flex-direction:column}
+.flip .front small{font-family:"Nunito";font-size:13px;color:var(--muted);font-weight:700}
+.stepl{counter-reset:s;list-style:none;padding:0;margin:8px 0}
+.stepl li{counter-increment:s;position:relative;padding:10px 12px 10px 56px;margin:8px 0;background:#fff;border:2px solid var(--line);border-radius:14px}
+.stepl li:before{content:counter(s);position:absolute;left:12px;top:10px;width:32px;height:32px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:900;display:flex;align-items:center;justify-content:center;font-family:"Fredoka"}
+.stepl li b{color:var(--navy)}
+.ex{background:#fffdf5;border:2px dashed var(--gold);border-radius:14px;padding:12px 16px;margin:10px 0;font-family:Georgia,"Times New Roman",serif;font-size:18px}
+.think{list-style:none;padding:0;margin:10px 0}
+.think li{display:flex;gap:10px;align-items:flex-start;margin:8px 0;background:#f6f8ff;border-radius:12px;padding:10px 12px}
+.think li:before{content:"💭";font-size:20px}
+.myth{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.myth div{border-radius:14px;padding:10px 14px}
+.myth .m{background:var(--badbg);border:2px solid #f5c2c2}
+.myth .f{background:var(--goodbg);border:2px solid #a7e3bd}
+.myth b{display:block;font-size:14px;letter-spacing:.4px}
+.myth .m b{color:var(--bad)}
+.myth .f b{color:var(--good)}
+table.t{width:100%;border-collapse:separate;border-spacing:0;border:2px solid var(--line);border-radius:14px;overflow:hidden;margin:10px 0;font-size:16px}
+table.t th{background:var(--navy);color:#fff;text-align:left;padding:8px 10px;font-family:"Fredoka";font-weight:500}
+table.t td{padding:8px 10px;border-top:1px solid var(--line);vertical-align:top;background:#fff}
+table.t tr:nth-child(even) td{background:#faf9ff}
+.tablewrap{overflow-x:auto}
+.navrow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.dots{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--line)}
+.dot.on{background:var(--accent);transform:scale(1.25)}
+.dot.g{background:var(--good)}.dot.y{background:var(--gold)}.dot.r{background:#f08a8a}
+
+/* practice */
+.prac{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+.prac.solo{grid-template-columns:1fr;max-width:860px;margin:0 auto}
+.passage{position:sticky;top:120px;max-height:calc(100vh - 140px);overflow:auto}
+.passage h3{color:var(--navy);font-size:21px}
+.ptext{font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.65}
+.ptext p{margin:.6em 0}
+.ptext .pn{display:inline-block;min-width:22px;font-family:"Nunito";font-weight:900;font-size:12px;color:#fff;background:var(--navy2);border-radius:6px;padding:0 5px;margin-right:6px;vertical-align:2px;text-align:center}
+.ptext .poem{white-space:pre-line;font-style:italic}
+.ptext h4{font-family:"Fredoka";color:var(--accent);margin-top:10px}
+.ptext .src{font-family:"Nunito";font-size:13px;color:var(--muted)}
+.qtop{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.dok{border-radius:999px;padding:4px 12px;font-weight:900;font-size:13px;color:#fff}
+.dok1{background:#0ea5a4}.dok2{background:#2563eb}.dok3{background:#9333ea}
+.qnum{font-weight:900;color:var(--muted);font-size:14px}
+.qtext{font-size:21px;font-weight:800;color:var(--navy);margin:6px 0 14px}
+.excerpt{background:#fffdf5;border-left:5px solid var(--gold);padding:10px 14px;border-radius:10px;font-family:Georgia,serif;margin:0 0 12px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fff;border:3px solid var(--line);border-radius:16px;padding:12px 14px;font-size:18px;color:var(--ink);transition:border-color .1s,transform .08s;width:100%}
+.opt:hover{border-color:var(--accent)}
+.opt .L{flex:none;width:34px;height:34px;border-radius:10px;background:var(--accentbg);color:var(--accent);font-weight:900;display:flex;align-items:center;justify-content:center;font-family:"Fredoka"}
+.opt.wrong{border-color:#f5b5b5;background:var(--badbg);color:#8a2b2b;pointer-events:none}
+.opt.wrong .L{background:var(--bad);color:#fff}
+.opt.right{border-color:var(--good);background:var(--goodbg);pointer-events:none}
+.opt.right .L{background:var(--good);color:#fff}
+.opt.dim{opacity:.55;pointer-events:none}
+.fb{margin-top:14px;border-radius:16px;padding:14px 16px;font-size:17px;animation:pop .25s ease}
+.fb.bad{background:var(--badbg);border:2px solid #f5c2c2}
+.fb.good{background:var(--goodbg);border:2px solid #a7e3bd}
+.fb.hint{background:#fff7dd;border:2px solid #f6d77c}
+.fb h4{font-size:19px;margin-bottom:4px}
+.fb.bad h4{color:var(--bad)}.fb.good h4{color:var(--good)}.fb.hint h4{color:var(--warn)}
+.fb .fbrow{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.qtools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center}
+.hintbtn{border:2px dashed var(--gold);background:#fffaf0;color:var(--warn);border-radius:999px;padding:6px 14px;font-weight:900;font-size:15px}
+.linkbtn{background:none;border:none;color:var(--accent);font-weight:900;text-decoration:underline;font-size:15px;padding:4px}
+.pts{font-family:"Fredoka";font-weight:600;color:var(--accent)}
+details.pmob{display:none}
+
+/* result */
+.result{text-align:center;max-width:720px;margin:0 auto}
+.result h2{font-size:32px;color:var(--navy);margin:8px 0}
+.bigkey{animation:spinin 1s cubic-bezier(.2,1.4,.4,1) both}
+.rstats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.rstat{background:#f7f6ff;border-radius:14px;padding:10px}
+.rstat b{display:block;font-size:26px;font-family:"Fredoka";color:var(--accent)}
+.rstat span{font-size:14px;font-weight:800;color:var(--muted)}
+
+/* vault */
+.vault{max-width:760px;margin:0 auto;text-align:center}
+.door{width:260px;height:260px;margin:10px auto 20px;border-radius:50%;background:radial-gradient(circle,#c9ced9 0%,#8d95a8 60%,#5d667a 100%);border:12px solid #3d4558;position:relative;box-shadow:0 12px 30px rgba(0,0,0,.25);transition:transform 1.4s cubic-bezier(.6,0,.3,1)}
+.door .wheel{position:absolute;inset:60px;border-radius:50%;border:10px solid #2f3647;transition:transform 1.4s}
+.door .wheel:before,.door .wheel:after{content:"";position:absolute;left:50%;top:-10px;bottom:-10px;width:10px;margin-left:-5px;background:#2f3647}
+.door .wheel:after{transform:rotate(90deg)}
+.door.open{transform:perspective(800px) rotateY(-75deg) translateX(-40px)}
+.door.open .wheel{transform:rotate(540deg)}
+.cert{background:#fff;border:6px double var(--gold);border-radius:20px;padding:26px;margin-top:10px}
+.cert h1{font-size:32px;color:var(--navy)}
+.cert .nm{font-family:"Fredoka";font-size:36px;color:var(--accent);margin:8px 0;border-bottom:3px solid var(--gold);display:inline-block;padding:0 20px}
+.keyring{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:12px 0}
+
+footer{text-align:center;color:var(--muted);font-size:13px;padding:20px 16px 30px}
+footer button{font-size:12px;background:none;border:1px solid var(--line);border-radius:8px;padding:4px 8px;color:var(--muted);margin-top:8px}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:99}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140px);background:var(--navy);color:#fff;border:3px solid var(--gold);border-radius:18px;padding:10px 18px;font-weight:900;font-size:18px;z-index:98;transition:transform .35s cubic-bezier(.2,1.4,.4,1);max-width:92vw;text-align:center}
+#toast.on{transform:translateX(-50%) translateY(0)}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes spinin{from{transform:scale(0) rotate(-200deg)}to{transform:scale(1) rotate(0)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+.wiggle{animation:wiggle .4s ease 2}
+
+@media (max-width:900px){
+  .prac{grid-template-columns:1fr}
+  .passage{position:static;max-height:none}
+  .hero{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  body{font-size:17px}
+  .top{position:relative}
+  .passage{top:0}
+  .brand .ttl{display:none}
+  .hero h1{font-size:27px}
+  .myth{grid-template-columns:1fr}
+  .qtext{font-size:19px}
+  .rstats{grid-template-columns:1fr 1fr}
+  .card{padding:16px}
+}
+@media print{
+  .top,footer,.noprint{display:none!important}
+  body{background:#fff}
+}
+.opened{font-size:90px;line-height:1;margin:10px auto;filter:drop-shadow(0 0 24px rgba(245,183,10,.8));animation:spinin .9s cubic-bezier(.2,1.4,.4,1) both}
+
+</style>
+</head>
+<body>
+<div id="app"></div>
+<canvas id="confetti"></canvas>
+<div id="toast" role="status" aria-live="polite"></div>
+<script>
+/* LOGO: paste your logo as a data URL or image path between the quotes, e.g. window.LOGO_SRC = "logo.png"; */
+window.LOGO_SRC = "";
+</script>
+<script>
+window.TUTORIAL = {
+id:"cat3",
+short:"Genres & Vocabulary",
+kicker:"FAST Category 3 of 3",
+title:"Reading Across Genres & Vocabulary",
+intro:`This tutorial teaches you every Grade 6 skill in the <b>Reading Across Genres &amp; Vocabulary</b> category of the Florida FAST test: figurative language and tone, paraphrasing, comparing authors from different time periods, rhetorical appeals, academic vocabulary, Greek and Latin roots, and context clues. Each lock has a lesson and FAST-style practice.`,
+theme:{accent:"#e8590c",accent2:"#ff922b",accentbg:"#fff0e3"},
+locks:[
+/* ================= LOCK 1: R.3.1 ================= */
+{id:"r31",code:"ELA.6.R.3.1",icon:"🔥",name:"Figurative Language Forge",skill:"How figurative language builds tone and meaning",
+remember:"Spot it, translate it to plain words, feel the tone, then explain WHY the author chose it: “The ___ suggests ___, which creates a ___ tone.”",
+lesson:[
+{t:"big",h:"Words that mean more than they say",body:`<p class="big"><b>Literal language</b> means exactly what it says. <b>Figurative language</b> uses words in a creative, non-literal way to create a picture or feeling.</p>
+<p>“It’s raining very hard” is literal. “It’s raining buckets” is figurative. Nobody is pouring buckets, but you can SEE and FEEL the heavy rain.</p>
+<p>Authors use figurative language to shape two things:</p>
+<ul><li><b>Meaning:</b> what the reader understands about a character, setting, or idea</li><li><b>Tone:</b> the author’s attitude, the feeling in the writing (tense, cheerful, gloomy, hopeful, playful)</li></ul>
+<div class="callout">🔥 On the FAST you won’t just name the device. You’ll explain how it <b>contributes to tone and meaning</b>.</div>`},
+{t:"table",h:"Figurative language toolbox",head:["Device","What it is","Example","Usual effect"],
+rows:[["<b>Simile</b>","Compares using <i>like</i> or <i>as</i>","Her voice was soft as a feather.","Creates a clear picture"],
+["<b>Metaphor</b>","Compares by saying one thing IS another","The classroom was a zoo.","Shows a strong connection"],
+["<b>Personification</b>","Gives human traits to non-human things","The wind whispered secrets.","Makes things feel alive"],
+["<b>Hyperbole</b>","Huge exaggeration","I’ve told you a million times!","Shows strong emotion or humor"],
+["<b>Idiom</b>","A saying whose meaning differs from its words","It’s a piece of cake.","Sounds natural and casual"],
+["<b>Imagery</b>","Details that appeal to the five senses","The sizzling, smoky smell of bacon","Pulls readers into the scene"],
+["<b>Onomatopoeia</b>","A word that imitates a sound","buzz, crash, sizzle","Lets readers HEAR the scene"],
+["<b>Alliteration</b>","Repeated beginning consonant sounds","slippery, slimy snake","Adds rhythm and emphasis"]]},
+{t:"terms",h:"Tone words to know",intro:"Tone is the attitude behind the words. Tap to flip these common tone words.",items:[
+["Tense","Nervous, full of suspense","😬"],["Hopeful","Expecting good things","🌅"],["Gloomy","Dark, sad, hopeless","🌧️"],["Playful","Fun, silly, lighthearted","🎈"],
+["Nostalgic","Fondly remembering the past","📷"],["Sarcastic","Saying the opposite of what you mean to mock","🙄"],["Admiring","Full of respect and praise","🏆"],["Comforting","Calm, soothing, safe","🫂"]]},
+{t:"steps",h:"Strategy: Spot → Translate → Feel → Explain",steps:[
+["Spot it.","Find the figurative phrase. Which device is it?"],
+["Translate it.","What does it mean in plain, literal words?"],
+["Feel it.","What emotion or attitude does it create? Name the tone."],
+["Explain it.","“The author uses ___ to show ___, which creates a ___ tone.”"]]},
+{t:"example",h:"Watch it work",text:`The old school bus groaned up the hill, coughing black smoke like a tired dragon. Every pothole was an earthquake. By the time we reached the top, my backpack had gone on a three-mile adventure without me.`,
+think:["<b>Spot:</b> “groaned” and “coughing” are personification. “like a tired dragon” is a simile. “Every pothole was an earthquake” is a metaphor and hyperbole.","<b>Translate:</b> The bus is old, slow, and bumpy, and the ride is rough.","<b>Feel:</b> It’s funny and exaggerated, not scary.","<b>Explain:</b> The figurative language creates a <b>playful, humorous tone</b> and shows how rough the bus ride is."]},
+{t:"check",h:"Quick Check",q:"In the example, what does “Every pothole was an earthquake” mean?",
+opts:["Each bump in the road felt huge and shook the bus hard.","A real earthquake happened during the bus ride.","The road was smooth and calm.","The bus driver was scared of earthquakes."],
+miss:{1:"That’s the literal meaning. Figurative language isn’t meant to be taken literally!",2:"That’s the opposite. An “earthquake” suggests violent shaking.",3:"The text says nothing about the driver’s fears."},
+why:"The metaphor (with exaggeration) compares each pothole to an earthquake to show how bumpy the ride felt."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Choosing the literal meaning.","Ask: Could this REALLY happen? If not, translate it."],
+["Naming the device but not the effect.","FAST asks HOW it contributes to tone and meaning."],
+["Mixing up simile and metaphor.","Simile uses like/as. Metaphor says one thing IS another."],
+["Confusing tone with mood.","Tone = the author’s attitude. Mood = how the reader feels. They are related but not the same."],
+["Choosing a tone that fits only one phrase.","Look at ALL the figurative language in the passage together."]]}
+],
+passage:{title:"The Night Before the Hurricane",html:`<p><span class="pn">1</span>The afternoon sky turned the color of an old bruise, purple and sickly yellow-green. The palm trees along Bayview Street bowed and shivered as if they knew what was coming.</p>
+<p><span class="pn">2</span>Inside, Dad moved like a tornado, hauling water jugs and batteries in from the garage. “We’ve got a million things to do and about five minutes to do them,” he said.</p>
+<p><span class="pn">3</span>Mia pressed her nose to the window. The wind whistled and howled, rattling the shutters. Rain began to tap, tap, tap against the glass, then pounded like a drum line.</p>
+<p><span class="pn">4</span>Then the power flickered and died. In the darkness, Grandma struck a match and lit a candle. Its small flame was a brave little soldier standing guard against the storm. “We’ve weathered worse,” she said, squeezing Mia’s hand. “This old house has deep roots.”</p>
+<p><span class="pn">5</span>Mia listened to the storm roaring outside, but for the first time all day, her heart slowed down.</p>`},
+questions:[
+{dok:1,q:"“The palm trees along Bayview Street bowed and shivered as if they knew what was coming.” This is an example of",
+opts:["personification","alliteration","onomatopoeia","idiom"],
+miss:{1:"Alliteration repeats beginning sounds. Look at what the trees are DOING.",2:"Onomatopoeia is a sound word like “buzz.” This sentence gives trees human actions.",3:"An idiom is a common saying. This sentence gives trees human feelings."},
+hint:"Can trees really “know” something? What kind of traits are those?",why:"Trees can’t “know” or “shiver” with fear like people. Giving them human traits is personification."},
+{dok:1,q:"Which phrase from the passage is an example of hyperbole?",
+opts:["“a million things to do and about five minutes to do them”","“then pounded like a drum line”","“Rain began to tap, tap, tap against the glass, then pounded”","“Grandma struck a match and lit a candle”"],
+miss:{1:"This is a simile. It compares using “like,” but it isn’t an exaggeration.",2:"This is onomatopoeia. The words imitate a sound.",3:"This is literal. Grandma really lights a candle."},
+hint:"Hyperbole is a HUGE exaggeration.",why:"Dad doesn’t literally have a million tasks and five minutes. The exaggeration shows how rushed and stressed he feels."},
+{dok:2,q:"What does the simile “pounded like a drum line” suggest about the rain?",
+opts:["It became loud, heavy, and steady.","It stopped completely.","It was soft and gentle.","It sounded like a song Mia enjoyed."],
+miss:{1:"The rain is getting stronger, not stopping. Notice the shift from “tap” to “pounded.”",2:"“Pounded” is a strong, heavy word, not gentle.",3:"The comparison is about loudness and rhythm, not about Mia enjoying it."},
+hint:"Notice how the rain changes from “tap, tap, tap” to “pounded.”",why:"A drum line is loud and powerful, so the simile shows the rain growing heavy and intense."},
+{dok:2,q:"How does the metaphor “Its small flame was a brave little soldier standing guard” affect the tone in paragraph 4?",
+opts:["It shifts the tone from tense to hopeful and comforting.","It makes the tone more frightening, violent, and full of danger.","It creates a silly, joking tone that makes fun of the storm.","It has no effect on the tone."],
+miss:{1:"The soldier is “standing guard,” protecting them. That makes things feel safer, not more frightening.",2:"The image is gentle and brave, not a joke.",3:"Figurative language almost always affects tone. Here it signals a change."},
+hint:"What does a soldier “standing guard” do for the people it protects?",why:"Comparing the tiny flame to a brave guard suggests protection and courage, shifting the tense tone to a hopeful, comforting one."},
+{dok:3,q:"How does the figurative language in paragraphs 1–3 contribute to the tone?",
+opts:["Images like a bruised sky, shivering trees, and howling wind create a tense tone.","Funny exaggerations throughout these paragraphs create a light, playful tone.","Gentle, soft images of nature make the tone calm and peaceful.","The figurative language makes the tone admiring of the storm."],
+miss:{1:"Dad’s hyperbole is a little funny, but the bruise, shivering trees, and howling wind create worry, not fun.",2:"Nothing in paragraphs 1–3 is calm. The calm comes at the END.",3:"The storm is described as threatening, not as something to admire."},
+hint:"Add up ALL the images in paragraphs 1–3. How do they make you feel together?",why:"Together, the bruise-colored sky, the trees “as if they knew what was coming,” and the howling wind create suspense and unease."},
+{dok:3,q:"Grandma says, “This old house has deep roots.” What does she mean, and how does it shape the ending?",
+opts:["The house and family are strong and have survived storms before, which calms Mia.","The house has real tree roots growing underneath it that might damage the floor.","Grandma thinks they should leave the house right away.","The house is old and probably won’t survive the storm."],
+miss:{1:"That’s a literal reading. Houses don’t have real roots. Think about what roots do for a tree.",2:"Grandma is calm and reassuring. She isn’t urging them to leave.",3:"That’s the opposite of her message. Strong roots mean stability, not weakness."},
+hint:"What do deep roots do for a tree in a strong wind?",why:"Deep roots keep a tree standing in storms. The metaphor means the house and family are strong, which is why Mia’s “heart slowed down.”"}
+]},
+
+/* ================= LOCK 2: R.3.2 ================= */
+{id:"r32",code:"ELA.6.R.3.2",icon:"🔁",name:"Paraphrase Power",skill:"Restating a text in your own words",
+remember:"A paraphrase keeps ALL the meaning, uses YOUR words and YOUR sentence structure, and adds no opinions or new facts.",
+lesson:[
+{t:"big",h:"Say it your way, keep the meaning",body:`<p class="big">To <b>paraphrase</b> means to restate what a text says <b>in your own words</b>, while keeping the <b>same meaning</b>.</p>
+<p>A good paraphrase is like translating a sentence from “author language” into “you language.” It is usually about the <b>same length</b> as the original because you keep all the important information.</p>
+<div class="callout">🔁 <b>Why it matters:</b> If you can paraphrase a sentence, you truly understand it. On the FAST, you’ll choose which paraphrase best keeps the original meaning.</div>`},
+{t:"table",h:"Paraphrase vs. summary vs. quote",head:["","Paraphrase","Summary","Quote"],
+rows:[["Words","Your own words","Your own words","The author’s exact words in quotation marks"],
+["Length","About the same as the original","Much shorter","Exactly the same"],
+["Includes","ALL the important ideas","Only the MAIN ideas","Everything, word for word"]]},
+{t:"steps",h:"Strategy: Read → Hide → Rewrite → Check",steps:[
+["Read and understand.","Read the sentence two times. Figure out any hard words."],
+["Hide it.","Look away from the text (or cover it) so you don’t copy."],
+["Rewrite it.","Use synonyms AND change the sentence structure, for example by moving the beginning to the end."],
+["Check it with the 4 C’s.","Correct meaning? Complete (nothing important missing)? Changed words? Clean of opinions and new facts?"]]},
+{t:"example",h:"Good vs. bad paraphrases",intro:"Original: “Cheetahs can reach speeds of about 70 miles per hour, but they can only keep up this pace for short distances.”",
+text:`✅ <b>Strong:</b> Although cheetahs can run roughly 70 miles an hour, they can only sprint that fast for a short way.<br><br>❌ <b>Too close:</b> Cheetahs can reach speeds of 70 miles per hour, but they can only keep this pace for short distances.<br><br>❌ <b>Changed meaning:</b> Cheetahs can run 70 miles per hour for many miles.<br><br>❌ <b>Added opinion:</b> Cheetahs are the coolest animals because they are so fast.`,
+think:["The <b>strong</b> version changes words (“sprint,” “roughly”) and structure (“Although…”), and keeps both facts.","The <b>too close</b> version copies most of the original. That’s not a paraphrase.","The <b>changed meaning</b> version says the opposite of “short distances.”","The <b>added opinion</b> version includes “coolest,” which the author never said."]},
+{t:"check",h:"Quick Check",text:`Original: “Many desert plants store water in their thick stems so they can survive long periods without rain.”`,q:"Which is the best paraphrase?",
+opts:["To live through long dry spells, lots of desert plants keep water inside their fat stems.","Many desert plants store water in thick stems so they survive long periods without rain.","Desert plants are amazing and beautiful.","Desert plants need rain every day to survive."],
+miss:{1:"This copies almost every word from the original. Change the words AND the structure.",2:"That’s an opinion the author never stated, and it loses the meaning.",3:"This changes the meaning. The plants survive WITHOUT rain for long periods."},
+why:"It uses new words (“dry spells,” “fat stems”) and a new structure, and keeps the full meaning."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Swapping only one or two words.","That’s too close to the original. Change the words AND the sentence structure."],
+["Adding your opinion (“amazing,” “should”).","A paraphrase never adds ideas the author didn’t state."],
+["Leaving out an important part.","Keep every key detail, like both the speed AND the distance."],
+["Changing the meaning.","Reread the original and check every fact in the paraphrase."],
+["Confusing paraphrase with summary.","A summary shortens a text to main ideas. A paraphrase keeps everything."]]}
+],
+passage:null,
+questions:[
+{dok:1,q:"Which statement best defines a paraphrase?",
+opts:["Restating a text in your own words while keeping its full meaning","Shortening a text to only its main idea","Copying the author’s exact words and placing them inside quotation marks","Explaining whether you agree with the author"],
+miss:{1:"That’s a summary. A paraphrase keeps ALL the important ideas.",2:"That’s a quotation. A paraphrase uses YOUR words.",3:"That’s a response or opinion. A paraphrase only restates what the author said."},
+hint:"Paraphrase = same meaning, different words.",why:"A paraphrase restates ALL of the author’s meaning in new words and a new sentence structure."},
+{dok:1,excerpt:`“Sea otters often wrap themselves in strands of kelp so they won’t drift away while they sleep.”`,q:"Which is the best paraphrase of this sentence?",
+opts:["To avoid floating off while sleeping, sea otters frequently tangle themselves in seaweed.","Sea otters are the cutest animals in the ocean, especially when they are sleeping.","Sea otters often wrap themselves in kelp strands so they won’t drift while sleeping.","Sea otters sleep in kelp forests because they are afraid that sharks will attack them."],
+miss:{1:"That’s an opinion, and it leaves out the meaning of the sentence.",2:"This is almost word for word. A paraphrase needs YOUR words and structure.",3:"Sharks are never mentioned. This adds a new reason that changes the meaning."},
+hint:"Kelp is a type of seaweed. Look for new words with the SAME meaning.",why:"It changes the words (“floating off,” “seaweed”) and the structure, and keeps the full meaning."},
+{dok:2,excerpt:`“Although the Wright brothers’ first flight lasted only twelve seconds, it proved that a powered airplane could carry a person through the air.”`,q:"Which paraphrase keeps the original meaning?",
+opts:["The Wright brothers’ first flight was very short, but it showed that a person could fly in an engine-powered plane.","The Wright brothers flew for twelve minutes and proved that airplanes were completely safe for every passenger.","The first flight was a failure because it lasted for only twelve seconds before landing.","Today, airplanes can carry hundreds of people all the way around the world."],
+miss:{1:"Check the facts: it was twelve SECONDS, and the text says nothing about safety.",2:"The original says the flight PROVED something important. Calling it a failure changes the meaning.",3:"This adds new information about today. It doesn’t restate the original."},
+hint:"Check that each fact and the overall message match the original.",why:"It keeps both ideas (the flight was short AND it proved powered flight works) in new words."},
+{dok:2,excerpt:`“Honeybees communicate the location of food by performing a ‘waggle dance,’ which shows other bees both the direction and the distance of the flowers.”<br><br>A student wrote: <i>Honeybees dance to show other bees where flowers are.</i>`,q:"What is the main problem with the student’s paraphrase?",
+opts:["It leaves out that the dance shows both the direction AND the distance.","It copies too many of the original author’s exact words and phrases.","It adds the student’s own opinion about how amazing bees are.","It says that honeybees dance just for fun when they find flowers."],
+miss:{1:"The student did use new words. The problem is something missing.",2:"There is no opinion word in the student’s sentence.",3:"The student says the dance shows where flowers are, not that it’s for fun."},
+hint:"Compare the details. What did the original include that the student didn’t?",why:"A paraphrase must be complete. The student dropped the key detail that the dance shows both direction and distance."},
+{dok:3,excerpt:`“The Everglades is often called a ‘river of grass.’ Rather than flowing quickly like most rivers, its water moves slowly south across a wide, shallow plain covered with sawgrass. This slow-moving water provides a home for alligators, wading birds, and the endangered Florida panther.”`,q:"Which is the best paraphrase of the whole excerpt?",
+opts:["People call the Everglades a “river of grass” because its water creeps slowly south across a wide, shallow sawgrass plain. That slow water is home to alligators, wading birds, and the endangered Florida panther.","The Everglades is known as a “river of grass,” and it is a place where many different kinds of animals make their homes.","The Everglades is called a “river of grass” because its water rushes quickly north through deep, narrow channels. This fast-moving water is the reason alligators, wading birds, and panthers love living there.","The Everglades, the “river of grass,” is the most beautiful place in Florida. Everyone should visit to see its sawgrass, alligators, wading birds, and panthers."],
+miss:{1:"That’s closer to a summary. It leaves out how the water moves and which animals live there.",2:"This changes the facts. The water moves SLOWLY and SOUTH.",3:"This adds opinions and a suggestion the author never made."},
+hint:"Check all three sentences. Does the paraphrase keep each idea?",why:"It restates all three ideas (the nickname, the slow southward flow, and the animals) in new words without adding or changing anything."},
+{dok:3,excerpt:`“Despite the freezing rain, the volunteers refused to give up; they kept stacking sandbags until the river finally began to retreat.”`,q:"Which paraphrase best keeps both the meaning AND the determined feeling of the original?",
+opts:["Even though icy rain was falling, the volunteers kept piling sandbags and wouldn’t quit until the river started to go down.","The volunteers gave up and went home once the freezing rain got too cold.","It rained that day, and some bags were stacked in a pile near a river.","The amazing volunteers were true heroes who bravely saved the entire town from the terrible flood that day."],
+miss:{1:"The original says they “refused to give up.” This reverses the meaning.",2:"The facts are there, but the determination (“refused to give up”) is lost.",3:"“Heroes” and “saved the entire town” are opinions and new claims the author never made."},
+hint:"Which choice keeps the facts AND the volunteers’ refuse-to-quit attitude?",why:"It keeps every fact and the determined attitude (“wouldn’t quit”) without adding opinions."}
+]},
+
+/* ================= LOCK 3: R.3.3 ================= */
+{id:"r33",code:"ELA.6.R.3.3",icon:"⏳",name:"Time Travel Texts",skill:"Comparing authors from different time periods on the same topic",
+remember:"Same topic, different time = different details, values, and language. Compare what each author SAYS, then explain HOW the time period shaped it.",
+lesson:[
+{t:"big",h:"Texts are time capsules",body:`<p class="big">Every text is written at a certain time in history. That time affects what an author <b>knows</b>, what is <b>normal</b> to them, what they <b>value</b>, and even <b>how they write</b>.</p>
+<p>When two authors from different time periods write about the <b>same topic</b> (like school, work, childhood, or technology), you can compare:</p>
+<ul><li><b>Similarities:</b> ideas that stay true across time</li><li><b>Differences:</b> details, attitudes, and language that changed</li><li><b>The reason:</b> how the <b>historical context</b> (life at that time) explains the differences</li></ul>
+<div class="callout">⏳ Always check the <b>date or source line</b>! It is your time-travel clue.</div>`},
+{t:"table",h:"What to compare",head:["Compare this","Questions to ask"],
+rows:[["Topic","What subject do both authors write about?"],["Message / point of view","What does each author think or feel about the topic?"],
+["Details","What does daily life look like in each text? What tools, jobs, or customs appear?"],
+["Language &amp; style","Is the writing formal or casual? Are there old-fashioned words or long sentences?"],
+["Historical context","What was life like at that time? How does that explain the differences?"]]},
+{t:"terms",h:"Key words to know",items:[
+["Time period","The era when a text was written (1880s, 1950s, today).","📅"],
+["Historical context","What life, technology, and beliefs were like at that time.","🏛️"],
+["Compare","Tell how things are alike.","🟰"],["Contrast","Tell how things are different.","↔️"],
+["Point of view","The author’s attitude or opinion about the topic.","👁️"],["Formal language","Proper, careful wording; common in older texts.","🎩"]]},
+{t:"steps",h:"Strategy: The Time Machine Chart",steps:[
+["Find the time period of each text.","Check dates, the source line, and clues like tools or old words."],
+["State what each author says about the topic.","One sentence per author."],
+["List the similarities.","What stays the same across time?"],
+["List the differences.","Details, attitudes, and language."],
+["Explain WHY.","“Author A sees ___ differently because in the ___ s, ___.”"]]},
+{t:"example",h:"Watch it work",text:`<b>1920s diary:</b> “Father brought home a radio today! The whole family gathered close to hear music traveling through the air from a city two hundred miles away. What a marvelous age we live in!”<br><br><b>Today’s text message:</b> “ugh my phone only has 10% battery and the video call keeps freezing 😩”`,
+think:["<b>Same topic:</b> technology that connects people far away.","<b>Difference in attitude:</b> The 1920s writer is amazed (“marvelous”). Today’s writer is annoyed by small problems.","<b>Difference in language:</b> Formal and complete sentences vs. casual text-speak.","<b>Why:</b> In the 1920s, radio was brand-new and astonishing. Today, technology is so normal that people expect it to work perfectly."]},
+{t:"check",h:"Quick Check",q:"Why is the 1920s writer amazed by the radio while today’s writer is annoyed by the phone?",
+opts:["In the 1920s, radio was new and astonishing, but today technology is so common that people expect it to work.","The 1920s writer was always happy, and today’s writer is always grumpy.","The radio worked better than today’s phones.","Both writers feel exactly the same way."],
+miss:{1:"That ignores the time period. The difference comes from historical context, not personality.",2:"The texts don’t compare which device works better.",3:"Their attitudes are opposite: amazed vs. annoyed."},
+why:"Historical context explains the difference: new technology feels marvelous, while everyday technology is taken for granted."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Assuming the older text is “wrong” or “silly.”","Older authors wrote from their own time. Explain their view; don’t judge it."],
+["Comparing only surface details (“one is longer”).","Compare the authors’ ideas and attitudes about the TOPIC."],
+["Forgetting to check the dates.","The time period is the key to explaining differences."],
+["Thinking “same topic” means “same message.”","Authors can have very different views on the same topic."],
+["Listing differences without explaining why.","Connect each difference to the historical context."]]}
+],
+passage:[
+{title:"Text 1: A Letter from 1885",by:"A fictional letter written in the style of the 1880s",html:`<p><span class="pn">1</span>Dearest Cousin Ruth,</p>
+<p><span class="pn">2</span>I am ever so pleased to tell you that school has begun again at last. Each morning I walk two miles along the sandy road, carrying my slate, my reader, and a tin pail with my dinner of cornbread. Our schoolhouse has but one room, and all twenty-three of us, from the smallest children of six years to the tall boys of fifteen, sit together under the eye of Miss Abbott.</p>
+<p><span class="pn">3</span>Miss Abbott has given me the duty of helping the little ones with their letters. I confess I find it a great joy to watch young Samuel sound out his first words. We recite our lessons aloud, and we must stand very straight when we do.</p>
+<p><span class="pn">4</span>Brother Thomas did not return to school this term, for Father needs him in the orange grove. I am ever so grateful that I may continue my studies, for I know it is a privilege not every child enjoys.</p>
+<p><span class="pn">5</span>Your loving cousin,<br>Clara</p>`},
+{title:"Text 2: My School Day",by:"A blog post by a sixth grader, written today",html:`<p><span class="pn">1</span>My day starts at 6:45 when my alarm goes off (way too early). I catch the bus at the corner, and by 7:30 I’m at school with my iPad charged and ready.</p>
+<p><span class="pn">2</span>We switch classes every period, so I see six different teachers. In science, my group is building a model of the water cycle. Honestly, working with my group is the best part. Jayden is great at drawing, and I’m good at research, so we teach each other stuff.</p>
+<p><span class="pn">3</span>Some days feel long, especially when we have a test. But my grandma always says, “Nobody can take your education away from you,” so I try to remember that when I’m tired.</p>`}],
+questions:[
+{dok:1,q:"What topic do both texts address?",
+opts:["A student’s experience of going to school","How to grow oranges","How to build a model of the water cycle","Why grandparents give good advice"],
+miss:{1:"The orange grove is only mentioned once in Text 1.",2:"The water cycle model is only one detail in Text 2.",3:"Grandma’s advice is one detail in Text 2, not the topic of both."},
+hint:"What subject do BOTH authors spend most of their writing on?",why:"Both Clara and the modern student describe their school days and how they feel about learning."},
+{dok:1,q:"Which detail from Text 1 shows something about school that is no longer common today?",
+opts:["Students of all ages, from six to fifteen, learn together in one room.","Students learn new lessons and skills from a teacher during the school day.","Older and younger students sometimes help each other learn.","Students sometimes feel tired after a long day of school."],
+miss:{1:"Students still learn from teachers today. This hasn’t changed.",2:"Students still help each other today. Text 2 shows group work.",3:"Feeling tired is common in both time periods."},
+hint:"Which detail would surprise a student today?",why:"Today, most students are grouped by grade. A one-room schoolhouse with all ages together is a detail of the 1880s."},
+{dok:2,q:"How is the language of Text 1 different from the language of Text 2?",
+opts:["Text 1 uses formal, old-fashioned phrases like “I am ever so pleased,” while Text 2 is casual and modern.","Text 1 uses slang and abbreviations like a text message, while Text 2 uses formal, old-fashioned language.","Both texts use the same casual, everyday style of writing.","Text 1 is written as a rhyming poem, while Text 2 is written as a play."],
+miss:{1:"That’s reversed. Text 2 has casual phrases like “way too early” and “stuff.”",2:"Compare “Dearest Cousin Ruth” with “way too early.” The styles are very different.",3:"Text 1 is a letter and Text 2 is a blog post. Neither is a poem or a play."},
+hint:"Read the first sentence of each text aloud. How do they sound?",why:"Text 1’s phrases (“ever so,” “I confess,” “but one room”) are formal and old-fashioned, while Text 2 sounds like everyday speech today."},
+{dok:2,q:"Which idea appears in BOTH texts?",
+opts:["Learning from and with other students is valuable.","Students should carry their lunch in a tin pail.","Students must stand up straight when reciting lessons.","Students need an iPad to learn."],
+miss:{1:"Only Clara mentions a tin pail.",2:"Only Clara describes reciting while standing.",3:"Only Text 2 mentions an iPad."},
+hint:"Clara helps young Samuel. What does the modern student say about Jayden?",why:"Clara loves helping Samuel learn, and the modern student says working with a group is “the best part.” Both value learning together."},
+{dok:3,q:"Why does Clara describe school as a “privilege,” while the modern student mostly treats school as part of a normal routine?",
+opts:["In the 1880s, many children left school to work, as Thomas did; today, school is expected.","Clara’s teacher was kinder and much better at teaching than most teachers are today.","The modern student does not care about education or learning at all.","Clara did not have any chores to do at home, so she had more free time."],
+miss:{1:"The texts don’t compare teacher quality. Focus on the historical context.",2:"The modern student remembers Grandma’s advice about education, so they DO care.",3:"The text doesn’t say this, and it doesn’t explain her view of school as a privilege."},
+hint:"What happened to Clara’s brother Thomas? What does that tell you about the 1880s?",why:"Thomas had to work in the orange grove instead of attending school. That context explains why Clara feels lucky to keep studying."},
+{dok:3,q:"Which statement BEST compares how the two authors address the topic of school?",
+opts:["Both value learning with others, but Clara’s letter shows school could be interrupted by farm work, while the blog shows school as an everyday routine.","Both authors dislike going to school and wish that they could stay home instead.","Clara enjoys school and helping others, but the modern student thinks school is useless, boring, and a waste of time.","The two texts say the same things about school; the only real difference is their length."],
+miss:{1:"Clara is “ever so pleased” about school, and the modern student enjoys group work. Neither dislikes school.",2:"The modern student finds group work “the best part” and remembers that education matters.",3:"The texts differ in time period, details, language, and attitude, not just length."},
+hint:"A strong comparison names a similarity AND a difference AND explains it with the time period.",why:"This answer names a similarity (both value learning together) and a difference, and explains the difference with historical context."}
+]},
+
+/* ================= LOCK 4: R.3.4 ================= */
+{id:"r34",code:"ELA.6.R.3.4",icon:"📣",name:"Persuasion Power-Ups",skill:"Identifying rhetorical appeals: ethos, pathos, and logos",
+remember:"Ethos = TRUST (who is speaking, experts, experience). Pathos = FEELINGS (stories, emotional words). Logos = LOGIC (facts, numbers, reasoning).",
+lesson:[
+{t:"big",h:"Three power-ups of persuasion",body:`<p class="big">When writers and speakers want to persuade, they use <b>rhetorical appeals</b>, three ways of convincing an audience. The ancient Greek thinker Aristotle named them over 2,000 years ago, and we still use them today!</p>
+<div class="tablewrap"><table class="t"><tr><th>Appeal</th><th>Appeals to…</th><th>Memory trick</th></tr>
+<tr><td>🛡️ <b>Ethos</b></td><td>Trust and credibility</td><td><b>E</b>thos → <b>E</b>xpert / <b>E</b>xperience</td></tr>
+<tr><td>❤️ <b>Pathos</b></td><td>Emotions and feelings</td><td><b>P</b>athos → <b>P</b>assion / sym<b>p</b>athy</td></tr>
+<tr><td>🧠 <b>Logos</b></td><td>Logic and reason</td><td><b>L</b>ogos → <b>L</b>ogic</td></tr></table></div>
+<div class="callout">📣 Advertisements, speeches, letters, and articles all use these appeals, often all three at once!</div>`},
+{t:"table",h:"How to spot each appeal",head:["Appeal","Look for…","Example"],
+rows:[["🛡️ Ethos","Experts, the speaker’s experience or job, trusted organizations, a fair and respectful tone","“As a nurse for fifteen years, I have seen…”"],
+["❤️ Pathos","Personal stories, emotional words, vivid images, appeals to fear, hope, pride, or sadness","“Imagine a puppy shivering alone in the cold rain.”"],
+["🧠 Logos","Facts, statistics, data, research, cause-and-effect reasoning","“Schools with recess report 20% fewer discipline problems.”"]]},
+{t:"terms",h:"Key words to know",items:[
+["Rhetoric","The art of using language to persuade.","🎤"],["Rhetorical appeal","A method a writer uses to convince an audience.","📣"],
+["Ethos","Convincing through credibility, trust, or authority.","🛡️"],["Pathos","Convincing through emotions.","❤️"],
+["Logos","Convincing through logic, facts, and reasoning.","🧠"],["Audience","The people the writer is trying to persuade.","👥"]]},
+{t:"steps",h:"Strategy: Ask three questions",steps:[
+["Why should I TRUST this? → Ethos","Does the speaker mention experience, a job, an expert, or a trusted source?"],
+["How does this make me FEEL? → Pathos","Is there a story, an emotional word, or an image meant to make me feel something?"],
+["Does this make SENSE with facts? → Logos","Are there numbers, research, or step-by-step reasoning?"]],
+after:`<div class="callout gold">🔑 Focus on what the sentence is mainly DOING to the audience: building trust, stirring feelings, or proving with logic.</div>`},
+{t:"example",h:"Watch it work",text:`(1) As the captain of our swim team for two years, I know how much our pool matters. (2) Last year, 85 students used the pool for lessons, and 40 of them learned to swim for the first time. (3) Picture a seven-year-old, scared of the water in June, proudly swimming across the deep end by August.`,
+think:["<b>Sentence 1 = Ethos.</b> The speaker builds trust with experience (“captain… for two years”).","<b>Sentence 2 = Logos.</b> The speaker uses numbers and facts.","<b>Sentence 3 = Pathos.</b> A vivid image of a proud child creates emotion."]},
+{t:"check",h:"Quick Check",q:"“Nine out of ten dentists recommend brushing twice a day.” Which appeal does this MAINLY use?",
+opts:["Logos, because it uses a statistic","Pathos, because it tells a sad story","Ethos only, because it never mentions numbers","No appeal at all"],
+miss:{1:"There’s no story or emotional language here.",2:"It DOES use numbers (“nine out of ten”). Dentists add some ethos, but the statistic is logic.",3:"It is clearly trying to persuade you to brush."},
+why:"The statistic is evidence that appeals to logic. (Mentioning dentists adds a little ethos too. Many sentences combine appeals!)"},
+{t:"watch",h:"Watch out for these traps",items:[
+["Thinking any fact that sounds scary is pathos.","Statistics and data are logos, even if they’re alarming. Pathos comes from stories, images, and emotional words."],
+["Thinking ethos means the speaker is a famous person.","Ethos is about TRUST: experience, expertise, or a fair, respectful tone."],
+["Assuming a text uses only one appeal.","Most persuasive texts use all three. Identify the appeal in the specific part the question names."],
+["Confusing an expert’s opinion with logos.","Citing an expert builds trust = ethos. Citing the expert’s DATA = logos."],
+["Ignoring the audience.","Ask who the speaker is trying to persuade and what would convince THEM."]]}
+],
+passage:{title:"Keep Our Library Open on Saturdays",by:"A speech to the city council",html:`<p><span class="pn">1</span>Good evening. My name is Jada Brooks. I am a sixth grader at Westview Middle School, and for the past three years, I have volunteered every Saturday at the Maple Street Library. I know this library, and the people who depend on it, better than almost anyone my age.</p>
+<p><span class="pn">2</span>The city plans to close the library on Saturdays to save money. But according to the library’s own records, Saturday is its busiest day, with more than 300 visitors each week. Closing on the busiest day of the week would hurt the largest number of people.</p>
+<p><span class="pn">3</span>Let me tell you about Mr. Alvarez. He is seventy-two years old and doesn’t have internet at home. Every Saturday, he comes to the library to video-chat with his granddaughter in Texas. When I told him about the plan, his eyes filled with tears. “That’s the only time I get to see her face,” he whispered.</p>
+<p><span class="pn">4</span>Ms. Patel, a librarian with twenty years of experience, told me that Saturday programs like Story Time and Homework Help reach families whose parents work during the week. These families cannot simply come on a Tuesday instead.</p>
+<p><span class="pn">5</span>Please keep the Maple Street Library open on Saturdays. For many people in our community, it is not just a building. It is a lifeline.</p>`},
+questions:[
+{dok:1,q:"Which rhetorical appeal does Jada MAINLY use in paragraph 1?",
+opts:["Ethos","Pathos","Logos","None"],
+miss:{1:"Paragraph 1 doesn’t tell an emotional story. Look at what Jada says about herself.",2:"There are no statistics or facts used as proof in paragraph 1.",3:"Jada is clearly trying to persuade. Why should the council listen to her?"},
+hint:"Why should the council TRUST Jada?",why:"Jada builds credibility by explaining her three years of volunteering. That is ethos."},
+{dok:1,q:"Which sentence is the clearest example of logos?",
+opts:["“Saturday is its busiest day, with more than 300 visitors each week.”","“When I told him about the plan, his eyes filled with tears.”","“My name is Jada Brooks. I am a sixth grader at Westview.”","“It is not just a building. It is a lifeline.”"],
+miss:{1:"This detail makes us feel sympathy, which is pathos.",2:"This introduces the speaker, which is part of ethos.",3:"This is a metaphor meant to stir emotion, which is pathos."},
+hint:"Logos uses numbers and facts.",why:"The statistic (more than 300 visitors) is factual evidence that appeals to logic."},
+{dok:2,q:"How does the story of Mr. Alvarez support Jada’s argument?",
+opts:["It appeals to emotion, helping the council feel sympathy for a person the closing would hurt.","It proves with statistics that the library is busier on Saturdays than on any other day.","It shows that Jada is an expert librarian who can be trusted.","It explains how much money the city would save by closing."],
+miss:{1:"The statistics are in paragraph 2. This is a personal story.",2:"Jada is a volunteer, not a librarian, and this story is about Mr. Alvarez.",3:"Money saved is never explained in the speech."},
+hint:"How do you feel when you read about Mr. Alvarez?",why:"The tearful story of a grandfather losing contact with his granddaughter is pathos. It makes the council feel what the closing would cost."},
+{dok:2,q:"Why does Jada mention that Ms. Patel has “twenty years of experience”?",
+opts:["To make the information about Saturday programs more trustworthy","To make the audience laugh and relax before the vote","To give a statistic about the number of library visitors","To show that Ms. Patel wants the library closed"],
+miss:{1:"Nothing about this detail is meant to be funny.",2:"“Twenty years” describes Ms. Patel’s experience, not visitors. It builds trust.",3:"Ms. Patel explains why Saturday programs matter, so she supports keeping them."},
+hint:"An experienced expert adds which appeal?",why:"Mentioning an experienced expert adds credibility (ethos) to the claim about families who need Saturday programs."},
+{dok:3,q:"Which statement best explains how Jada uses rhetorical appeals throughout the speech?",
+opts:["She builds trust, proves her point with data, and stirs emotion with a story and a strong closing image.","She relies only on emotional stories and never uses facts or experts to support her point.","She relies only on statistics and never tries to make the audience feel anything at all.","She does not try to persuade; she only informs the council about library hours."],
+miss:{1:"Paragraph 2 uses a statistic, which is logos.",2:"The Mr. Alvarez story and the “lifeline” ending appeal to emotion.",3:"She directly asks, “Please keep the… Library open,” so she is persuading."},
+hint:"Find one example of EACH appeal in the speech.",why:"Ethos (paragraphs 1 and 4), logos (paragraph 2), and pathos (paragraphs 3 and 5) work together to persuade."},
+{dok:3,q:"Which addition would MOST strengthen Jada’s use of logos?",
+opts:["Data showing how many students attend Saturday Homework Help each month","A description of the library’s beautiful old front doors and windows","A second story about a sad child who loves reading library books","A sentence saying that Jada has had a library card since kindergarten"],
+miss:{1:"A description of doors doesn’t prove anything logically.",2:"Another sad story would add pathos, not logos.",3:"Having a library card adds a tiny bit of ethos, not logos."},
+hint:"Logos = facts and numbers that prove the point.",why:"Attendance data is factual evidence that logically shows how many people the closing would affect."}
+]},
+
+/* ================= LOCK 5: V.1.1 ================= */
+{id:"v11",code:"ELA.6.V.1.1",icon:"🎓",name:"Academic Word Workshop",skill:"Understanding and using grade-level academic vocabulary",
+remember:"Academic words tell you EXACTLY what to do. Analyze = explain how parts work together. Infer = figure out from clues. Cite = give evidence. Contrast = show differences.",
+lesson:[
+{t:"big",h:"The words that run the test",body:`<p class="big"><b>Academic vocabulary</b> is the set of words used in school across ALL subjects, such as <i>analyze</i>, <i>evidence</i>, and <i>infer</i>.</p>
+<p>They matter in two big ways:</p>
+<ul><li><b>Understanding questions:</b> FAST questions are full of these words. If you don’t know what “infer” or “convey” means, you can’t answer the question!</li><li><b>Speaking and writing precisely:</b> Strong readers and writers use exact words instead of vague words like “stuff,” “things,” or “shows.”</li></ul>`},
+{t:"table",h:"Must-know academic words",head:["Word","What it means","How it appears on a test"],
+rows:[["Analyze","Explain how parts work together and why","“Analyze how the setting affects the plot.”"],["Infer","Figure out using clues plus what you know","“What can the reader infer about Leo?”"],
+["Evidence","Details from the text that support an answer","“Which evidence best supports…”"],["Cite","Quote or point to specific evidence","“Cite two details…”"],
+["Contrast","Show how things are different","“How do the two texts contrast?”"],["Convey","Communicate or express an idea or feeling","“What feeling does the author convey?”"],
+["Significant","Important or meaningful","“Why is the letter significant?”"],["Develop","Build an idea step by step","“How does the author develop the theme?”"],
+["Perspective","A point of view or way of seeing things","“How does Mia’s perspective change?”"],["Impact","Effect or influence","“What is the impact of the flashback?”"]]},
+{t:"terms",h:"Flip and practice",items:[
+["Summarize","Tell the main ideas briefly in your own words.","📝"],["Sequence","The order in which events happen.","🔢"],["Determine","Figure out or decide.","🎯"],["Relevant","Closely connected to the topic.","🔗"],
+["Distinguish","Tell the difference between.","🔍"],["Interpret","Explain the meaning of something.","💬"]]},
+{t:"steps",h:"Strategy: Decode the question",steps:[
+["Circle (mentally) the academic word in the question.","Analyze? Infer? Contrast? Convey?"],
+["Translate it into kid-friendly words.","“Convey” = “get across.” “Infer” = “figure out from clues.”"],
+["Rewrite the question in your own words.","“What feeling does the author get across?”"],
+["Answer what is ACTUALLY being asked.","A contrast question needs differences, not similarities!"]]},
+{t:"check",h:"Quick Check",q:"A question asks, “Which detail best CONTRASTS the two characters?” What should your answer show?",
+opts:["How the characters are different","How the characters are alike","What happens first in the story","The main idea of the story"],
+miss:{1:"That’s “compare.” Contrast focuses on differences.",2:"That’s sequence, the order of events.",3:"That’s central idea or theme."},
+why:"To contrast is to show differences."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Mixing up compare and contrast.","Compare = alike (sometimes both). Contrast = different."],
+["Thinking “infer” means “find it stated.”","Inferring means the answer is NOT directly stated. Use clues."],
+["Using vague words in your writing (“stuff,” “things”).","Replace them with precise academic words like “evidence” or “details.”"],
+["Skipping the academic word in a question.","That word tells you the TASK. Read it carefully!"],
+["Thinking “significant” means “big in size.”","In academic language, significant means important or meaningful."]]}
+],
+passage:null,
+questions:[
+{dok:1,q:"When a question asks you to INFER, it is asking you to",
+opts:["figure out something using clues from the text and what you already know","find a sentence in the text that states the answer word for word","copy the author’s exact words into your answer","count how many paragraphs and sentences are in the text"],
+miss:{1:"If the answer is stated word for word, you’re locating, not inferring.",2:"Copying exact words is quoting, not inferring.",3:"Counting paragraphs has nothing to do with inferring."},
+hint:"Inferring is like being a detective with clues.",why:"Inferring means combining text clues with your own knowledge to reach a conclusion that isn’t directly stated."},
+{dok:1,q:"Which word means “to show how two or more things are different”?",
+opts:["contrast","summarize","cite","sequence"],
+miss:{1:"Summarize means to briefly tell the main ideas.",2:"Cite means to point to or quote evidence.",3:"Sequence means the order of events."},
+hint:"Think about Venn diagrams. Which word goes with the “different” sides?",why:"Contrast means to show differences."},
+{dok:2,q:"Which word BEST completes the sentence? “The author ______ a feeling of fear by describing the dark, creaking hallway.”",
+opts:["conveys","sequences","cites","summarizes"],
+miss:{1:"Sequence is about putting events in order, not expressing a feeling.",2:"Cite means to quote evidence. The author isn’t quoting anything here.",3:"Summarize means to shorten main ideas. It doesn’t fit creating a feeling."},
+hint:"Which word means “gets across” or “communicates”?",why:"“Conveys” means communicates or expresses. The author communicates fear through the description."},
+{dok:2,excerpt:`A student wrote: “The story has lots of stuff that shows the dog is loyal.”`,q:"Which revision uses academic vocabulary to make the sentence more precise?",
+opts:["“The story includes evidence that the dog is loyal, such as when it waits by the door every day.”","“The story has a lot of different things and stuff about the dog being loyal to people.”","“The dog is really, really loyal in the story.”","“There is stuff in the story about a dog and the things the dog does.”"],
+miss:{1:"“Things” is just as vague as “stuff.”",2:"Repeating “really” doesn’t make it precise, and there’s no evidence.",3:"This is even vaguer than the original."},
+hint:"Which choice replaces the vague word with a precise academic word AND gives a detail?",why:"“Evidence” is a precise academic word, and the revision cites a specific detail to support the idea."},
+{dok:3,q:"A question says, “Analyze how the setting affects the main character.” Which response does what “analyze” asks?",
+opts:["“The freezing mountain forces Ana to work with her rival, which changes her from selfish to cooperative.”","“The story takes place high on a snowy mountain in the middle of a long, cold winter.”","“Ana is the main character.”","“I liked the setting a lot because I like mountains and snow.”"],
+miss:{1:"This only identifies the setting. Analyzing explains HOW it affects the character.",2:"This only names the character. It doesn’t explain any connection.",3:"This is a personal opinion. Analysis explains how parts of the text work together."},
+hint:"Analyze = explain HOW and WHY parts connect.",why:"It explains HOW the setting causes a change in the character. That’s what analysis requires."},
+{dok:3,q:"In which sentence is the word “significant” used correctly?",
+opts:["“The discovery of the old map was significant because it led the explorers to the lost city.”","“The elephant was so significant that it could not fit through the door of the barn.”","“She significant the answer on her paper before she turned it in.”","“The soup was significant, so she added more salt and pepper.”"],
+miss:{1:"Significant doesn’t mean physically large. It means important.",2:"Significant isn’t a verb. You can’t “significant” something.",3:"Significant doesn’t describe taste. Try “bland” instead."},
+hint:"Significant = important or meaningful.",why:"The map was important because it changed what happened. That is the academic meaning of significant."}
+]},
+
+/* ================= LOCK 6: V.1.2 ================= */
+{id:"v12",code:"ELA.6.V.1.2",icon:"🌱",name:"Root Detective",skill:"Using Greek and Latin roots and affixes to find meaning",
+remember:"Break the word into prefix + root + suffix, define each piece, put the meaning back together, and check it in the sentence.",
+lesson:[
+{t:"big",h:"Big words are built from small parts",body:`<p class="big">Many English words were built from <b>Greek and Latin</b> word parts. If you know the parts, you can crack the meanings of hundreds of words!</p>
+<ul><li><b>Root:</b> the main part of a word that carries its core meaning (<i>port</i> = carry)</li><li><b>Prefix:</b> a part added to the BEGINNING that changes the meaning (<i>trans-</i> = across)</li><li><b>Suffix:</b> a part added to the END, often changing the part of speech (<i>-able</i> = able to be)</li></ul>
+<div class="callout">🌱 <b>trans + port + able = transportable</b> → able to be carried across from one place to another</div>`},
+{t:"table",h:"Root power list",head:["Root","Meaning","Examples"],
+rows:[["bio","life","biology, biography"],["geo","earth","geography, geology"],["graph / scrib / script","write","autograph, scribble, manuscript"],["tele","far","telephone, telescope"],
+["phon","sound","phonics, symphony"],["photo","light","photograph, photosynthesis"],["aud","hear","audience, audible"],["dict","say, speak","predict, dictionary"],
+["port","carry","portable, export"],["rupt","break","erupt, interrupt"],["struct","build","construct, structure"],["spect / vis / vid","see, look","inspect, visible, video"],
+["chron","time","chronological, synchronize"],["meter / metr","measure","thermometer, perimeter"],["therm","heat","thermal, thermos"],["hydr / aqua","water","hydrate, aquarium"],
+["ject","throw","eject, project"],["tract","pull, drag","tractor, attract"],["auto","self","autobiography, automatic"],["micro","small","microscope, microbe"]]},
+{t:"table",h:"Prefixes and suffixes",head:["Prefix","Meaning","","Suffix","Meaning"],
+rows:[["un- / in- / dis- / non-","not, opposite","","-able / -ible","able to be"],["re-","again, back","","-less","without"],["pre-","before","","-ful","full of"],["sub-","under, below","","-ology","the study of"],
+["inter-","between, among","","-ist / -er / -or","a person who"],["trans-","across","","-tion / -sion","the act of"],["anti-","against","","-ous","full of, having"],["bi- / tri- / multi-","two / three / many","","-ment","the result of"]]},
+{t:"steps",h:"Strategy: Break it, define it, build it, check it",steps:[
+["Break it.","Split the word into parts: un + break + able."],
+["Define each part.","un = not, break = break, able = able to be."],
+["Build the meaning.","“Not able to be broken.”"],
+["Check it in context.","Does that meaning make sense in the sentence? If not, look for other clues."]]},
+{t:"check",h:"Quick Check",q:"Using word parts, what does “inaudible” most likely mean?",
+opts:["Not able to be heard","Able to be seen","Full of sound","The study of hearing"],
+miss:{1:"Seeing is spect/vis. “Aud” means hear.",2:"The prefix “in-” means NOT, so it isn’t “full of.”",3:"“The study of” would be -ology. This word ends in -ible."},
+why:"in (not) + aud (hear) + ible (able to be) = not able to be heard."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Assuming every word with the same letters shares a root.","“Pineapple” has nothing to do with pain! Always check the meaning in context."],
+["Forgetting the prefix.","“Inaudible” and “audible” mean opposite things. Prefixes change everything!"],
+["Ignoring the suffix.","-ist is a person, -ology is a study, -able means able to be."],
+["Picking a meaning that doesn’t fit the sentence.","Word parts give a clue. Context confirms it."],
+["Mixing up roots that look alike.","Phon (sound) vs. photo (light); port (carry) vs. part."]]}
+],
+passage:null,
+questions:[
+{dok:1,q:"The Latin root “rupt” (as in erupt and interrupt) means",
+opts:["break","carry","build","see"],
+miss:{1:"“Port” means carry.",2:"“Struct” means build.",3:"“Spect” and “vis” mean see."},
+hint:"Think about a volcano erupting. What happens to the ground?",why:"“Rupt” means break. A volcano erupts by breaking out, and interrupting breaks into a conversation."},
+{dok:1,q:"The word “chronological” contains the Greek root “chron.” What does chron mean?",
+opts:["time","water","life","sound"],
+miss:{1:"Water is “hydr” or “aqua.”",2:"Life is “bio.”",3:"Sound is “phon.”"},
+hint:"Chronological order puts events in the order they happened.",why:"“Chron” means time. Chronological order arranges events by time."},
+{dok:2,excerpt:`“Before the experiment, the scientist used a <b>hydrometer</b> to test the liquid in each jar.”`,q:"Using roots and context, what is a hydrometer?",
+opts:["A tool that measures something about water or other liquids","A person who studies the weather and predicts rain","A container used for storing water in a laboratory","A machine that heats water or other liquids to a very high temperature"],
+miss:{1:"A person would usually end in -ist or -ologist. “Meter” means measure.",2:"“Meter” means measure, not store.",3:"Heat is “therm.” This word has “hydr” and “meter.”"},
+hint:"hydr = water; meter = measure",why:"hydr (water) + meter (measure) = a tool that measures something about water or liquids, which fits a scientist testing liquid."},
+{dok:2,excerpt:`“The explorers began a <b>transcontinental</b> journey that would take them from the Atlantic coast to the Pacific.”`,q:"What does “transcontinental” mean?",
+opts:["Across a continent","Under a continent","Before a continent existed","Against a continent"],
+miss:{1:"“Sub-” means under. This word starts with trans-.",2:"“Pre-” means before.",3:"“Anti-” means against."},
+hint:"trans- = across. Check the context: from one coast to the other.",why:"trans (across) + continental (continent) = across a continent, matching a trip from coast to coast."},
+{dok:3,excerpt:`“The <b>biographer</b> spent years interviewing the inventor’s family and reading her old letters.”`,q:"Based on word parts AND context, what is a biographer?",
+opts:["A person who writes about someone’s life","A scientist who studies living cells","A person who writes about their own life","A machine that records sounds"],
+miss:{1:"“Bio” means life, but “graph” means write. And the context is about interviews and letters, not cells.",2:"Writing about your OWN life would be an AUTObiographer (auto = self).",3:"Sound would be “phon.” Bio + graph + er is about writing a life."},
+hint:"bio = life, graph = write, -er = a person who",why:"bio (life) + graph (write) + er (person who) = a person who writes someone’s life story, which matches interviewing family and reading letters."},
+{dok:3,excerpt:`“Because the old bridge was unsafe, engineers decided to <b>reconstruct</b> it using stronger steel.”`,q:"What does “reconstruct” mean, and which word parts tell you?",
+opts:["To build again; “re-” means again and “struct” means build.","To tear down forever; “re-” means not and “struct” means break.","To inspect carefully; “re-” means look and “struct” means see.","To carry away; “re-” means away and “struct” means carry."],
+miss:{1:"“Re-” means again, not “not,” and “struct” means build, not break.",2:"Seeing/looking is “spect.” “Struct” means build.",3:"Carry is “port.” “Struct” means build."},
+hint:"Think of “construction” workers.",why:"re (again) + struct (build) = build again, which fits fixing an unsafe bridge with stronger steel."}
+]},
+
+/* ================= LOCK 7: V.1.3 ================= */
+{id:"v13",code:"ELA.6.V.1.3",icon:"🔐",name:"Context Clue Code-Breaker",skill:"Context clues, connotation, denotation, and reference materials",
+remember:"Look around the word for clues (definition, synonym, antonym, example). Then think about connotation: is the word positive, negative, or neutral?",
+lesson:[
+{t:"big",h:"The sentence holds the secret code",body:`<p class="big">When you meet an unknown word, the words AROUND it (the <b>context</b>) often give you clues to crack its meaning.</p>
+<p>Words also have two kinds of meaning:</p>
+<ul><li><b>Denotation:</b> the dictionary definition (what the word literally means)</li><li><b>Connotation:</b> the FEELING a word carries (positive, negative, or neutral)</li></ul>
+<div class="callout">🔐 <b>Example:</b> <i>thrifty</i>, <i>cheap</i>, and <i>economical</i> all DENOTE “careful with money.” But <i>thrifty</i> feels positive, <i>cheap</i> feels negative, and <i>economical</i> feels neutral.</div>`},
+{t:"table",h:"Five types of context clues",head:["Clue type","Signal words","Example"],
+rows:[["<b>Definition</b>","is, means, or, which is, commas or dashes","The <b>arid</b> land, which received almost no rain, cracked in the sun."],
+["<b>Synonym / restatement</b>","or, also, in other words, like","Leo was <b>famished</b>; in other words, he was very hungry."],
+["<b>Antonym / contrast</b>","but, however, unlike, instead, although","Unlike her <b>timid</b> brother, Rosa spoke up boldly."],
+["<b>Example</b>","such as, for example, including","<b>Citrus</b> fruits, such as oranges and lemons, grow in Florida."],
+["<b>Inference / general</b>","no signal word; use the whole situation","After running ten miles, the <b>exhausted</b> runner collapsed on the grass."]]},
+{t:"table",h:"Connotation scale",intro:"Same basic meaning, different feelings:",head:["😟 Negative","😐 Neutral","🙂 Positive"],
+rows:[["nosy","curious","inquisitive"],["stubborn","determined","persistent"],["scrawny","thin","slender"],["smirk","smile","beam"],["cramped","small","cozy"]]},
+{t:"steps",h:"Strategy: Code-Breaker Steps",steps:[
+["Reread the sentence and the ones around it.","Look for signal words: or, unlike, such as, but."],
+["Name the clue type.","Definition, synonym, antonym, example, or inference?"],
+["Predict a meaning and plug it in.","Replace the word with your guess. Does the sentence still make sense?"],
+["Check the connotation.","Is the author’s word positive, negative, or neutral? Why did the author choose it?"],
+["Use reference materials when needed.","A dictionary entry may list several meanings. Pick the one that fits the context."]]},
+{t:"check",h:"Quick Check",text:`Unlike her <b>timid</b> brother, Rosa spoke up boldly in class.`,q:"What does “timid” most likely mean?",
+opts:["Shy and fearful","Loud and bold","Smart and quick","Angry and rude"],
+miss:{1:"“Unlike” signals the OPPOSITE of bold. Rosa is the bold one.",2:"Nothing in the sentence is about intelligence.",3:"Nothing suggests anger. The contrast is with being bold."},
+why:"“Unlike” is an antonym clue. The brother is the opposite of bold, so timid means shy or fearful."},
+{t:"watch",h:"Watch out for these traps",items:[
+["Choosing a meaning that fits the word but not the sentence.","Always plug your answer back into the sentence."],
+["Missing the contrast signal (“but,” “unlike,” “however”).","These words mean the unknown word is the OPPOSITE of the clue."],
+["Ignoring connotation.","“Slender” and “scrawny” both mean thin, but the feeling is very different."],
+["Choosing the first dictionary meaning.","Many words have several meanings. Match the one that fits the context."],
+["Only looking at one sentence.","Clues are sometimes in the sentence before or after."]]}
+],
+passage:null,
+questions:[
+{dok:1,excerpt:`“The mountain trail was <b>treacherous</b>, full of loose rocks and steep drops that could cause a fall at any moment.”`,q:"What does “treacherous” most likely mean?",
+opts:["dangerous","beautiful","crowded","flat"],
+miss:{1:"The clues (loose rocks, steep drops, falls) describe danger, not beauty.",2:"There’s no mention of other people.",3:"“Steep drops” tells you it is NOT flat."},
+hint:"What do loose rocks and steep drops have in common?",why:"The examples of hazards (loose rocks, steep drops, falls) show that treacherous means dangerous."},
+{dok:1,q:"Which word has the most NEGATIVE connotation? “The new neighbor was ______ about everyone’s business.”",
+opts:["nosy","curious","interested","inquisitive"],
+miss:{1:"Curious is mostly neutral. It means wanting to know.",2:"Interested is neutral to positive.",3:"Inquisitive is positive. It sounds like eager learning."},
+hint:"Which word would someone NOT want to be called?",why:"“Nosy” suggests annoyingly prying into others’ business, which is a negative connotation."},
+{dok:2,excerpt:`“Unlike his <b>gregarious</b> sister, who loved parties and chatting with strangers, Malik was quiet and preferred to read alone.”`,q:"What does “gregarious” most likely mean?",
+opts:["outgoing and social","shy and quiet","angry and loud","tired and bored"],
+miss:{1:"That describes Malik. “Unlike” tells you the sister is the OPPOSITE of Malik.",2:"Loving parties doesn’t mean angry. Look at the details about the sister.",3:"Someone who loves parties and chatting isn’t described as tired."},
+hint:"Find the contrast signal. Then look at what the sister loves.",why:"“Unlike” signals a contrast with quiet Malik, and the sister loves parties and chatting, so gregarious means outgoing and social."},
+{dok:2,excerpt:`<b>pitch</b> (verb) 1. to throw a ball to a batter 2. to set up a tent or camp 3. to fall forward suddenly 4. to present an idea to try to sell it<br><br>“The campers had to <b>pitch</b> their tent before the storm arrived.”`,q:"Which dictionary meaning of “pitch” is used in the sentence?",
+opts:["Meaning 2","Meaning 1","Meaning 3","Meaning 4"],
+miss:{1:"No baseball here! Look at what the campers are doing.",2:"The campers aren’t falling. They are working with a tent.",3:"No one is selling an idea. Look for the meaning that matches “tent.”"},
+hint:"Plug each meaning into the sentence. Which one makes sense with a tent?",why:"Meaning 2, “to set up a tent or camp,” is the only meaning that fits campers and a tent."},
+{dok:3,excerpt:`“Grandpa’s old cabin was <b>cozy</b>, with a small fireplace, a soft quilt, and just enough room for the two of us.”`,q:"The author chose “cozy” instead of “cramped.” How does this word choice affect the reader’s understanding?",
+opts:["It gives a positive feeling, making the small space seem warm and comfortable instead of crowded.","It shows that the cabin is enormous, with lots of extra room.","It makes the cabin seem dirty, dark, and unpleasant to visit.","It has no effect on the reader, because cozy and cramped have exactly the same connotation."],
+miss:{1:"Both cozy and cramped describe a SMALL space. The cabin isn’t enormous.",2:"That would be a negative connotation. “Cozy” is positive.",3:"They have similar denotations (small space) but different connotations: cozy is positive, cramped is negative."},
+hint:"Both words mean “small space.” How do they FEEL different?",why:"“Cozy” has a positive connotation, so the reader sees the small cabin as warm and comforting, which matches the fireplace and soft quilt."},
+{dok:3,excerpt:`“After weeks of drought, the farmers’ hopes were withering like the corn in their fields. When the first raindrops finally fell, their spirits <b>revived</b>.”`,q:"What does “revived” most likely mean in this context?",
+opts:["came back to life; were restored","dried up completely and disappeared","became confused","were washed away"],
+miss:{1:"That describes the drought, BEFORE the rain. The rain changes things.",2:"Nothing in the passage suggests confusion.",3:"That’s a literal guess about rain. The sentence is about the farmers’ spirits (feelings)."},
+hint:"re- means again. What happens to withering plants (and hopes) when rain comes?",why:"The contrast between “withering” hopes and the arrival of rain shows that the farmers’ spirits came back to life. re- (again) + vive (live) supports this."}
+]}
+]};
+
+</script>
+<script>
+(function(){
+"use strict";
+const T = window.TUTORIAL;
+const LOGO = window.LOGO_SRC || "";
+const KEY = "literacy-locksmith-fast6-" + T.id + "-v1";
+const $ = s => document.querySelector(s);
+const app = $("#app");
+document.documentElement.style.setProperty("--accent", T.theme.accent);
+document.documentElement.style.setProperty("--accent2", T.theme.accent2);
+document.documentElement.style.setProperty("--accentbg", T.theme.accentbg);
+
+/* ---------- autosave (stays on this iPad) ---------- */
+function fresh(){return {name:"",xp:0,streak:0,best:0,dok3:0,badges:[],locks:{},view:"home",lock:null,step:"learn",sound:true,slow:false,vaultOpen:false};}
+function load(){try{const r=localStorage.getItem(KEY);if(!r)return null;return Object.assign(fresh(),JSON.parse(r));}catch(e){return null;}}
+let S = load() || fresh();
+let savedTimer=null;
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}
+  const el=$("#saved"); if(el){el.classList.add("on");clearTimeout(savedTimer);savedTimer=setTimeout(()=>el.classList.remove("on"),1600);}
+}
+function LS(id){return S.locks[id]||(S.locks[id]={card:0,learned:false,q:0,ans:{},tc:{},done:false,key:null,first:0,retake:false,noHint:true});}
+function lockById(id){return T.locks.find(l=>l.id===id);}
+
+/* ---------- helpers ---------- */
+function hash(str){let h=2166136261;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+function order(seed,n){const a=[...Array(n).keys()];let h=hash(seed);for(let i=n-1;i>0;i--){h=Math.imul(h^(h>>>15),2246822507)>>>0;h=(h+0x9e3779b9)>>>0;const j=h%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
+const LET="ABCD";
+const LEVELS=[[0,"Key Finder"],[100,"Apprentice Locksmith"],[250,"Junior Locksmith"],[450,"Locksmith"],[700,"Master Locksmith"],[1000,"Vault Legend"]];
+function level(){let i=0;LEVELS.forEach((l,k)=>{if(S.xp>=l[0])i=k;});const cur=LEVELS[i],nxt=LEVELS[i+1];const pct=nxt?Math.round((S.xp-cur[0])/(nxt[0]-cur[0])*100):100;return {name:cur[1],num:i+1,pct,next:nxt?nxt[0]:null};}
+const BADGES=[
+ ["first","🔑","First Key","Finish any lock"],
+ ["fire","🔥","On Fire","5 first-try answers in a row"],
+ ["solo","🧠","Solo Solver","Finish a lock with no Key Clues"],
+ ["flaw","💎","Flawless","Every answer right on the first try in a lock"],
+ ["owl","🦉","Deep Thinker","5 DOK 3 questions right on the first try"],
+ ["books","📚","Lesson Lover","Finish every lesson"],
+ ["gold3","🏆","Gold Collector","Earn 3 gold keys"],
+ ["vault","👑","Vault Master","Open the vault"]
+];
+const KEYCOL={gold:["#f5b70a","#ffe08a"],silver:["#9aa3b5","#e3e7ef"],bronze:["#c26a2c","#f2b98a"]};
+function keySVG(type,size){const c=type?KEYCOL[type]:["#c9cbd6","#eceef4"];size=size||40;
+ return `<svg width="${size}" height="${size}" viewBox="0 0 64 64" aria-hidden="true"><circle cx="20" cy="22" r="14" fill="${c[0]}" stroke="#16244f" stroke-width="3"/><circle cx="20" cy="22" r="6" fill="${c[1]}" stroke="#16244f" stroke-width="3"/><path d="M30 30 L54 54 M44 44 L50 38 M50 50 L56 44" stroke="#16244f" stroke-width="9" stroke-linecap="round"/><path d="M30 30 L54 54 M44 44 L50 38 M50 50 L56 44" stroke="${c[0]}" stroke-width="5" stroke-linecap="round"/></svg>`;}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function toast(msg){const t=$("#toast");t.innerHTML=msg;t.classList.add("on");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("on"),2600);}
+function addXP(n,why){if(n<=0)return;S.xp+=n;if(why)toast(`⭐ +${n} XP · ${why}`);}
+function award(id){if(S.badges.includes(id))return;S.badges.push(id);const b=BADGES.find(x=>x[0]===id);setTimeout(()=>{toast(`${b[1]} New badge: <b>${b[2]}</b>!`);sfx("key");},900);}
+
+/* ---------- sound effects ---------- */
+let AC=null;
+function sfx(type){if(!S.sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume();
+ const seq={good:[[660,0],[880,.09],[1320,.18]],bad:[[300,0],[240,.13]],key:[[523,0],[659,.1],[784,.2],[1047,.32]],tap:[[620,0]]}[type]||[];
+ seq.forEach(([f,t])=>{const o=AC.createOscillator(),g=AC.createGain();o.type=type==="bad"?"sine":"triangle";o.frequency.value=f;const st=AC.currentTime+t;g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(type==="bad"?.08:.14,st+.02);g.gain.exponentialRampToValueAtTime(.0001,st+.2);o.connect(g);g.connect(AC.destination);o.start(st);o.stop(st+.22);});}catch(e){}}
+
+/* ---------- read aloud (Google US English voice) ---------- */
+const TTS={voice:null,btn:null,queue:[],
+ pick(){if(!("speechSynthesis" in window))return;const vs=speechSynthesis.getVoices();
+   this.voice=vs.find(v=>v.name==="Google US English")||vs.find(v=>/en[-_]US/i.test(v.lang)&&/Samantha|Ava|Allison|Susan|Zira|Jenny|Aria|Nicky/i.test(v.name))||vs.find(v=>/en[-_]US/i.test(v.lang))||null;},
+ clean(t){return t
+   .replace(/ELA\.\d+\.[A-Z]+(\.\d+)*/g,"")
+   .replace(/\bDOK\s*\d\b/g,"")
+   .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{2190}-\u{21FF}\u{2300}-\u{23FF}]/gu,"")
+   .replace(/[•·▶→←]/g," ").replace(/\s+/g," ").trim();},
+ chunks(t){const parts=t.match(/[^.!?]+[.!?"”’)]*\s*/g)||[t];const out=[];let cur="";parts.forEach(p=>{if((cur+p).length>220&&cur){out.push(cur);cur=p;}else cur+=p;});if(cur.trim())out.push(cur);return out;},
+ stop(){try{speechSynthesis.cancel();}catch(e){}this.queue=[];if(this.btn){this.btn.classList.remove("on");this.btn.innerHTML=this.btn.dataset.label;}this.btn=null;},
+ speak(text,btn){
+   if(!("speechSynthesis" in window)){toast("Read-aloud is not available on this device.");return;}
+   const same=this.btn===btn&&btn;this.stop();if(same)return;
+   if(!this.voice)this.pick();
+   this.btn=btn;if(btn){btn.dataset.label=btn.dataset.label||btn.innerHTML;btn.classList.add("on");btn.innerHTML="⏹ Stop";}
+   this.queue=this.chunks(this.clean(text));this.next();},
+ next(){if(!this.queue.length){this.stop();return;}const u=new SpeechSynthesisUtterance(this.queue.shift());
+   if(this.voice){u.voice=this.voice;u.lang=this.voice.lang;}else u.lang="en-US";
+   u.rate=S.slow?0.8:0.95;u.pitch=1;u.onend=()=>{if(this.btn)this.next();};u.onerror=()=>this.stop();speechSynthesis.speak(u);}
+};
+if("speechSynthesis" in window){TTS.pick();speechSynthesis.onvoiceschanged=()=>TTS.pick();}
+function textOf(el){const c=el.cloneNode(true);c.querySelectorAll("[data-nosay]").forEach(x=>x.remove());c.querySelectorAll(".flip .front").forEach(x=>x.remove());c.querySelectorAll(".flip .back").forEach(x=>{x.style.display="block";});c.querySelectorAll("p,li,h3,h4,div,tr,td,th,br").forEach(x=>x.insertAdjacentText("afterend"," . "));return c.textContent.replace(/(\s*\.\s*){2,}/g,". ");}
+
+/* ---------- confetti ---------- */
+function confetti(n){n=n||170;const c=$("#confetti"),x=c.getContext("2d");const W=c.width=innerWidth,H=c.height=innerHeight;
+ const cols=["#f5b70a","#ff5fa2","#3ec1d3","#7b3fe4","#22c55e","#ff8c42","#2563eb"];
+ const ps=[...Array(n)].map((_,i)=>({x:Math.random()*W,y:-20-Math.random()*H*.6,vx:(Math.random()-.5)*5,vy:2+Math.random()*4,r:Math.random()*6.3,vr:(Math.random()-.5)*.35,w:7+Math.random()*7,h:9+Math.random()*9,c:cols[i%cols.length]}));
+ const t0=performance.now();(function f(t){x.clearRect(0,0,W,H);let alive=false;ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.r+=p.vr;if(p.y<H+30)alive=true;x.save();x.translate(p.x,p.y);x.rotate(p.r);x.fillStyle=p.c;x.fillRect(-p.w/2,-p.h/2,p.w,p.h);x.restore();});if(alive&&t-t0<6000)requestAnimationFrame(f);else x.clearRect(0,0,W,H);})(t0);}
+
+/* ---------- top bar ---------- */
+function keysEarned(){return T.locks.filter(l=>S.locks[l.id]&&S.locks[l.id].done).length;}
+function topbar(){const lv=level();
+ const logo=LOGO?`<img src="${LOGO}" alt="The Literacy Locksmith logo">`:`<div class="wordmark">The Literacy<b>LOCKSMITH</b></div>`;
+ return `<header class="top noprint"><div class="wrap">
+  <div class="brand">${logo}<div class="ttl">${esc(T.short)}</div></div>
+  <div class="stats">
+   <span class="saved" id="saved">✔ Saved on this iPad</span>
+   <span class="chip gold" title="Experience points">⭐ ${S.xp} XP</span>
+   <span class="chip" title="Keys earned">🔑 ${keysEarned()}/${T.locks.length}</span>
+   <span class="chip" title="First-try streak">🔥 ${S.streak}</span>
+   <button class="ibtn" data-act="slow" title="Read-aloud speed">${S.slow?"🐢 Slow":"🐇 Normal"}</button>
+   <button class="ibtn" data-act="sound" title="Sound effects">${S.sound?"🔔 On":"🔕 Off"}</button>
+  </div>
+  <div class="lvlrow"><span>Lv ${lv.num} · ${lv.name}</span><div class="xpbar"><i style="width:${lv.pct}%"></i></div><span>${lv.next?(lv.next-S.xp)+" XP to next level":"MAX LEVEL!"}</span></div>
+ </div></header>`;}
+function footer(){return `<footer class="noprint">🔐 The Literacy Locksmith · Created and copyrighted by Donna Rees<br>Aligned to the Florida B.E.S.T. ELA Standards, Grade 6 · ${esc(T.title)}<br><button data-act="reset">Teacher: reset this device</button></footer>`;}
+
+/* ---------- HOME ---------- */
+function home(){
+ const allDone=T.locks.every(l=>S.locks[l.id]&&S.locks[l.id].done);
+ const greet=S.name?`<p class="big"><b>Welcome back, ${esc(S.name)}!</b> Your progress is saved right here on this iPad. Pick a lock below to keep going.</p>`:
+ `<p>Type your first name so your certificate knows who you are:</p><div class="namebox"><input id="nm" maxlength="24" placeholder="First name" autocomplete="off"><button class="btn" data-act="name">Let's go! 🚀</button></div>`;
+ let h=`<section class="hero"><div class="card" id="intro"><span class="kicker">${esc(T.kicker)}</span><h1>${esc(T.title)}</h1>
+  <p>${T.intro}</p>${greet}
+  <div class="qtools" data-nosay><button class="say" data-say="#intro">🔊 Read to me</button></div></div>
+  <div class="card howto" id="how"><h3>🗝️ How to Unlock the Vault</h3><ul>
+   <li><span>📘</span><b>Learn It:</b> Read (or listen to) the lesson cards. Tap the flip cards and try the Quick Checks.</li>
+   <li><span>🎯</span><b>Prove It:</b> Answer FAST-style questions at DOK 1, 2, and 3.</li>
+   <li><span>🔧</span><b>Wrong answer?</b> You'll see WHY it's a trap, then try again. First try = 10 XP, second = 5, third = 2.</li>
+   <li><span>🔑</span><b>Key Clues</b> give a hint but cost 3 XP.</li>
+   <li><span>🥇</span>Earn a <b>gold, silver, or bronze key</b> for each lock. Collect them all to open the vault!</li>
+  </ul></div></section>`;
+ h+=`<div class="sect"><h2>🔒 The Locks</h2><span class="sub">${T.locks.length} skills in this category · tap any lock to start</span></div><div class="grid">`;
+ T.locks.forEach((l,i)=>{const st=S.locks[l.id];let pill=`<span class="pill new">New</span>`;
+  if(st&&st.done)pill=`<span class="pill done">Unlocked · ${st.key} key</span>`;else if(st&&(st.card>0||st.q>0||st.learned))pill=`<span class="pill go">In progress</span>`;
+  h+=`<button class="lockc" data-act="open" data-id="${l.id}"><span class="keyabs">${keySVG(st&&st.done?st.key:null,34)}</span><span class="ic">${l.icon}</span><span class="code">Lock ${i+1} · ${l.code}</span><h3>${esc(l.name)}</h3><span class="sk">${esc(l.skill)}</span><span class="st">${pill}</span></button>`;});
+ h+=`</div>`;
+ if(allDone)h+=`<div class="card vaultcta"><h2>🏦 Every lock is open!</h2><p>You collected all ${T.locks.length} keys. The vault is waiting...</p><button class="btn gold" data-act="vault">Open the Vault 🔓</button></div>`;
+ h+=`<div class="sect"><h2>🏅 Badges</h2><span class="sub">${S.badges.length}/${BADGES.length} earned</span></div><div class="badges">`;
+ BADGES.forEach(b=>{h+=`<div class="badge ${S.badges.includes(b[0])?"":"lock"}"><span class="e">${b[1]}</span><span>${b[2]}<small>${b[3]}</small></span></div>`;});
+ h+=`</div>`;return h;}
+
+/* ---------- LESSON ---------- */
+function cardHTML(c,l,ci){let b="";
+ switch(c.t){
+  case "big":b=c.body;break;
+  case "terms":b=`<p>${c.intro||"Tap each card to flip it and reveal the meaning."}</p><div class="terms">${c.items.map(t=>`<div class="term flip" data-act="flip"><div class="front">${t[2]||""} ${t[0]}<small>tap to flip</small></div><div class="back"><b>${t[0]}</b><span>${t[1]}</span></div></div>`).join("")}</div>`;break;
+  case "steps":b=(c.intro?`<p>${c.intro}</p>`:"")+`<ol class="stepl">${c.steps.map(s=>`<li><b>${s[0]}</b><br>${s[1]}</li>`).join("")}</ol>`+(c.after||"");break;
+  case "example":b=(c.intro?`<p>${c.intro}</p>`:"")+`<div class="ex">${c.text}</div><p><b>Watch how a strong reader thinks:</b></p><ul class="think">${c.think.map(x=>`<li><span>${x}</span></li>`).join("")}</ul>`+(c.after?`<div class="callout green">${c.after}</div>`:"");break;
+  case "watch":b=`<p>${c.intro||"These are the traps test makers love. Don't fall for them!"}</p>`+c.items.map(m=>`<div class="myth"><div class="m"><b>❌ TRAP</b>${m[0]}</div><div class="f"><b>✅ FIX</b>${m[1]}</div></div>`).join("");break;
+  case "table":b=(c.intro?`<p>${c.intro}</p>`:"")+`<div class="tablewrap"><table class="t"><tr>${c.head.map(x=>`<th>${x}</th>`).join("")}</tr>${c.rows.map(r=>`<tr>${r.map(x=>`<td>${x}</td>`).join("")}</tr>`).join("")}</table></div>`+(c.after||"");break;
+  case "check":{const st=LS(l.id).tc[ci]||{wrong:[],ok:false};const ord=order(l.id+"tc"+ci,c.opts.length);
+   b=(c.text?`<div class="ex">${c.text}</div>`:"")+`<p class="qtext">${c.q}</p><div class="opts">`+ord.map((o,i)=>{const cls=st.ok&&o===0?"right":st.wrong.includes(o)?"wrong":st.ok?"dim":"";return `<button class="opt ${cls}" data-act="tc" data-ci="${ci}" data-o="${o}"><span class="L">${LET[i]}</span><span>${c.opts[o]}</span></button>`;}).join("")+`</div>`;
+   if(st.ok)b+=`<div class="fb good"><h4>✅ Nice! ${st.wrong.length===0?"+5 XP":""}</h4>${c.why}</div>`;
+   else if(st.wrong.length){const last=st.wrong[st.wrong.length-1];b+=`<div class="fb bad"><h4>🔧 Not quite — fix the thinking</h4>${c.miss&&c.miss[last]?c.miss[last]:"Look back at the lesson and try again."}</div>`;}
+   break;}
+  default:b=c.body||"";}
+ return `<div class="card lcard" id="lc"><div class="chead"><span class="tag" data-nosay>${c.tag||({big:"Big Idea",terms:"Key Words",steps:"Strategy",example:"Model",watch:"Watch Out!",table:"Know It",check:"Quick Check"}[c.t]||"Lesson")}</span><h3>${c.h}</h3><button class="say" data-say="#lc" data-nosay>🔊 Read to me</button></div><div class="cbody">${b}</div></div>`;}
+function lockHead(l,step){const st=LS(l.id);
+ const s=(k,label,ok)=>`<button class="stp ${step===k?"on":ok?"ok":""}" data-act="step" data-k="${k}">${label}</button>`;
+ return `<div class="lockhead"><button class="btn ghost sm" data-act="home">← Locks</button><span class="ic">${l.icon}</span><div><h2>${esc(l.name)}</h2><div class="code">${l.code} · ${esc(l.skill)}</div></div>
+ <div class="steps">${s("learn","📘 Learn It",st.learned)}${s("practice","🎯 Prove It",st.done)}${st.done?s("result","🔑 My Key",true):""}</div></div>`;}
+function learn(l){const st=LS(l.id);const n=l.lesson.length;const ci=Math.min(st.card,n-1);const c=l.lesson[ci];
+ let h=lockHead(l,"learn")+cardHTML(c,l,ci);
+ h+=`<div class="navrow lcard"><button class="btn ghost" data-act="prev" ${ci===0?"disabled":""}>← Back</button><div class="dots">${l.lesson.map((_,i)=>`<span class="dot ${i===ci?"on":i<ci?"g":""}"></span>`).join("")}</div>`;
+ h+=ci<n-1?`<button class="btn" data-act="next">Next →</button>`:`<button class="btn gold" data-act="topractice">I'm ready! Prove It 🎯</button>`;
+ return h+`</div>`;}
+
+/* ---------- PRACTICE ---------- */
+function passageHTML(p){if(!p)return "";const arr=Array.isArray(p)?p:[p];
+ return arr.map(x=>`<h3>${x.title}</h3>${x.by?`<div class="src">${x.by}</div>`:""}<div class="ptext">${x.html}</div>`).join("<hr>");}
+function practice(l){const st=LS(l.id);const qs=l.questions;
+ if(st.q>=qs.length){S.step="result";return result(l);}
+ const qi=st.q,q=qs[qi];const a=st.ans[qi]||(st.ans[qi]={wrong:[],ok:false,hint:false,pts:0,rev:false});
+ const ord=order(l.id+"q"+qi,q.opts.length);
+ const P=q.passage||l.passage;
+ let h=lockHead(l,"practice");
+ h+=`<div class="prac ${P?"":"solo"}">`;
+ if(P)h+=`<div class="card passage" id="psg"><div class="qtop" data-nosay><span class="tag">📖 Read the text</span><button class="say" data-say="#psgt">🔊 Read passage</button></div><div id="psgt">${passageHTML(P)}</div></div>`;
+ h+=`<div class="card" id="qcard"><div class="qtop"><span class="qnum">Question ${qi+1} of ${qs.length}</span><span class="dok dok${q.dok}">DOK ${q.dok} · ${["","Recall","Skill & Concept","Strategic Thinking"][q.dok]}</span>${st.retake?`<span class="tag">Retake · no XP</span>`:""}</div>`;
+ if(q.excerpt)h+=`<div class="excerpt">${q.excerpt}</div>`;
+ h+=`<div class="qtext">${q.q}</div><div class="opts">`;
+ ord.forEach((o,i)=>{let cls="";if((a.ok||a.rev)&&o===0)cls="right";else if(a.wrong.includes(o))cls="wrong";else if(a.ok||a.rev)cls="dim";
+  h+=`<button class="opt ${cls}" data-act="ans" data-o="${o}"><span class="L">${a.wrong.includes(o)?"✖":(a.ok||a.rev)&&o===0?"✔":LET[i]}</span><span>${q.opts[o]}</span></button>`;});
+ h+=`</div>`;
+ if(a.ok||a.rev){
+  h+=`<div class="fb good"><div class="fbrow"><h4>${a.rev?"🔓 Here's the right answer":"✅ "+(a.wrong.length?"You fixed it!":["Correct!","Nailed it!","Yes! Sharp thinking!","Boom! Right on!"][qi%4])}</h4><span class="pts">${st.retake?"":"+"+a.pts+" XP"}</span></div><p><b>Why it's right:</b> ${q.why}</p></div>`;
+  h+=`<div class="navrow"><button class="linkbtn" data-act="step" data-k="learn">📘 Review the lesson</button><button class="btn" data-act="nextq">${qi<qs.length-1?"Next question →":"Finish & get my key 🔑"}</button></div>`;
+ }else{
+  if(a.wrong.length){const last=a.wrong[a.wrong.length-1];const tries=a.wrong.length;
+   h+=`<div class="fb bad"><h4>🔧 Not quite — let's fix the thinking</h4><p>${q.miss&&q.miss[last]?q.miss[last]:"Go back to the text and look for evidence."}</p><p><b>Try again!</b> This try is worth ${[10,5,2,0][Math.min(tries,3)]} XP.</p></div>`;}
+  if(a.hint)h+=`<div class="fb hint"><h4>🔑 Key Clue</h4>${q.hint}</div>`;
+  h+=`<div class="qtools" data-nosay>${a.hint?"":`<button class="hintbtn" data-act="hint">🔑 Key Clue (−3 XP)</button>`}<button class="say" data-act="sayq">🔊 Read question</button><button class="linkbtn" data-act="step" data-k="learn">📘 Review the lesson</button></div>`;
+ }
+ h+=`<div class="navrow"><span></span><div class="dots">${qs.map((_,i)=>{const x=st.ans[i];let c="";if(i===qi)c="on";else if(x&&x.ok&&!x.wrong.length)c="g";else if(x&&x.ok)c="y";else if(x&&x.rev)c="r";return `<span class="dot ${c}"></span>`;}).join("")}</div><span></span></div>`;
+ return h+`</div></div>`;}
+function sayQuestion(l,btn){const st=LS(l.id);const q=l.questions[st.q];const ord=order(l.id+"q"+st.q,q.opts.length);
+ const tmp=document.createElement("div");tmp.innerHTML=(q.excerpt?q.excerpt+" . ":"")+q.q;let t=tmp.textContent+". ";
+ ord.forEach((o,i)=>{const d=document.createElement("div");d.innerHTML=q.opts[o];t+=` Choice ${LET[i]}: ${d.textContent}. `;});TTS.speak(t,btn);}
+function answer(l,o){const st=LS(l.id);const qi=st.q,q=l.questions[qi];const a=st.ans[qi];if(a.ok||a.rev)return;
+ if(o===0){a.ok=true;const base=[10,5,2,0][Math.min(a.wrong.length,3)];a.pts=st.retake?0:Math.max(base-(a.hint&&base>0?3:0),base>0?1:0);
+  sfx("good");
+  if(!st.retake){S.xp+=a.pts;}
+  if(a.wrong.length===0){S.streak++;if(S.streak>S.best)S.best=S.streak;if(q.dok===3&&!st.retake){S.dok3++;if(S.dok3>=5)award("owl");}
+   if(S.streak>=5)award("fire");if(S.streak%3===0&&!st.retake){S.xp+=5;toast(`🔥 ${S.streak} in a row! Streak bonus +5 XP`);}
+   if(S.streak%3!==0&&!st.retake)toast(`⭐ +${a.pts} XP`);}
+  else{if(!st.retake)toast(`⭐ +${a.pts} XP · you fixed your thinking!`);}
+  if(a.wrong.length===0&&S.streak%3===0)confetti(70);
+ }else{a.wrong.push(o);S.streak=0;sfx("bad");
+  if(a.wrong.length>=q.opts.length-1){a.rev=true;a.pts=0;}}
+ save();render();
+ setTimeout(()=>{const f=document.querySelector(".fb");if(f)f.scrollIntoView({behavior:"smooth",block:"nearest"});},60);}
+
+/* ---------- RESULT ---------- */
+function finalize(l){const st=LS(l.id);const qs=l.questions;let first=0;qs.forEach((_,i)=>{const a=st.ans[i];if(a&&a.ok&&a.wrong.length===0)first++;});
+ const pct=first/qs.length;const key=pct>=.8?"gold":pct>=.5?"silver":"bronze";
+ const order3={bronze:1,silver:2,gold:3};
+ const hintUsed=qs.some((_,i)=>st.ans[i]&&st.ans[i].hint);
+ if(!st.done){st.done=true;st.key=key;st.first=first;addXP(20+(key==="gold"?10:0),"Lock unlocked!");}
+ else if(order3[key]>order3[st.key]){st.key=key;st.first=first;toast(`⬆️ Key upgraded to ${key}!`);} else if(first>st.first)st.first=first;
+ st.retake=false;
+ award("first");if(!hintUsed)award("solo");if(first===qs.length)award("flaw");
+ if(T.locks.filter(x=>S.locks[x.id]&&S.locks[x.id].key==="gold").length>=3)award("gold3");
+ st.lastFirst=first;st.lastKey=key;st.lastDok=[1,2,3].map(d=>{const idx=qs.map((q,i)=>i).filter(i=>qs[i].dok===d);return [idx.filter(i=>st.ans[i]&&st.ans[i].ok&&!st.ans[i].wrong.length).length,idx.length];});
+ save();sfx("key");setTimeout(()=>confetti(),150);}
+function result(l){const st=LS(l.id);const qs=l.questions;if(st.lastKey==null){if(st.q>=qs.length)finalize(l);else{st.lastKey=st.key;st.lastFirst=st.first;}}
+ const key=st.lastKey||st.key;const first=st.lastFirst!=null?st.lastFirst:st.first;const msg={gold:"GOLD KEY! You're a master of this skill!",silver:"SILVER KEY! Strong work — a few more first tries and it's gold.",bronze:"BRONZE KEY! You unlocked it. Review the lesson and retake for a shinier key."}[key];
+ const idx=T.locks.findIndex(x=>x.id===l.id);const nxt=T.locks.slice(idx+1).concat(T.locks.slice(0,idx)).find(x=>!(S.locks[x.id]&&S.locks[x.id].done));
+ let h=lockHead(l,"result")+`<div class="card result"><div class="bigkey">${keySVG(key,130)}</div><h2>${l.name} — Unlocked!</h2><p class="big"><b>${msg}</b></p>
+ <div class="rstats"><div class="rstat"><b>${first}/${qs.length}</b><span>right on 1st try</span></div>${(st.lastDok||[]).map((d,i)=>`<div class="rstat"><b>${d[0]}/${d[1]}</b><span>DOK ${i+1} first try</span></div>`).join("")}<div class="rstat"><b>${S.best}</b><span>best streak</span></div><div class="rstat"><b>${S.xp}</b><span>total XP</span></div></div>
+ <div class="callout gold" style="text-align:left"><b>🧠 Remember:</b> ${l.remember}</div>
+ <div class="navrow" style="justify-content:center"><button class="btn ghost" data-act="retake">🔁 Retake for a better key</button>${nxt?`<button class="btn gold" data-act="open" data-id="${nxt.id}">Next lock: ${esc(nxt.name)} →</button>`:`<button class="btn gold" data-act="home">Back to the locks 🏦</button>`}</div></div>`;
+ return h;}
+
+/* ---------- VAULT ---------- */
+function vault(){const d=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});
+ let h=`<div class="vault"><div class="noprint"><button class="btn ghost sm" data-act="home">← Locks</button></div>${S.vaultOpen?`<div class="opened">🏦✨</div>`:`<div class="door" id="door"><div class="wheel"></div></div>`}`;
+ if(!S.vaultOpen)h+=`<h2 class="fred" style="font-size:30px;color:var(--navy)">The Vault</h2><p>You hold all ${T.locks.length} keys. Spin the wheel!</p><button class="btn gold" data-act="spin">🔓 Spin to open</button>`;
+ else h+=`<div class="cert" id="cert"><div style="font-size:44px">🏆</div><h1>Vault Unlocked!</h1><p>This certifies that</p><div class="nm">${esc(S.name||"A Super Reader")}</div><p>has mastered <b>${esc(T.title)}</b><br>(Florida FAST Grade 6 ELA Reading)</p><div class="keyring">${T.locks.map(l=>`<span title="${esc(l.name)}">${keySVG(S.locks[l.id].key,46)}</span>`).join("")}</div><p><b>${S.xp} XP</b> · Level: <b>${level().name}</b> · ${S.badges.length} badges</p><p style="color:var(--muted)">${d}</p><p class="noprint"><button class="btn" data-act="print">🖨️ Print certificate</button> <button class="btn ghost" data-act="home">Back to the locks</button></p></div>`;
+ return h+`</div>`;}
+
+/* ---------- render + events ---------- */
+function render(){TTS.stop();let body="";
+ if(S.view==="home")body=home();
+ else if(S.view==="vault")body=vault();
+ else{const l=lockById(S.lock);if(!l){S.view="home";return render();}
+  const st=LS(l.id);const canResult=st.done&&(st.q>=l.questions.length||!st.retake);
+  body=S.step==="practice"?((st.retake||!st.done||st.q<l.questions.length)?practice(l):result(l)):S.step==="result"?(canResult?result(l):practice(l)):learn(l);}
+ app.innerHTML=topbar()+`<main><div class="wrap">${body}</div></main>`+footer();}
+function go(fn){fn();save();render();window.scrollTo(0,0);}
+app.addEventListener("click",e=>{
+ const sb=e.target.closest("[data-say]");if(sb){const el=document.querySelector(sb.dataset.say);if(el)TTS.speak(textOf(el),sb);return;}
+ const b=e.target.closest("[data-act]");if(!b)return;const act=b.dataset.act;const l=S.lock?lockById(S.lock):null;
+ switch(act){
+  case "name":{const v=($("#nm").value||"").trim();if(!v){$("#nm").focus();return;}S.name=v.slice(0,24);sfx("good");save();render();toast(`👋 Hi, ${esc(S.name)}! Pick a lock to begin.`);break;}
+  case "open":go(()=>{S.view="lock";S.lock=b.dataset.id;const st=LS(S.lock);S.step=st.retake?"practice":st.done?"result":st.learned&&st.q>0?"practice":"learn";});sfx("tap");break;
+  case "home":go(()=>{S.view="home";});break;
+  case "step":{const k=b.dataset.k;const st=LS(l.id);if(k==="result"&&!st.done)return;go(()=>{S.step=k;if(k==="practice"&&st.done&&st.q>=l.questions.length)S.step="result";});break;}
+  case "next":go(()=>{const st=LS(l.id);st.card=Math.min(st.card+1,l.lesson.length-1);});sfx("tap");break;
+  case "prev":go(()=>{const st=LS(l.id);st.card=Math.max(st.card-1,0);});break;
+  case "topractice":go(()=>{const st=LS(l.id);if(!st.learned){st.learned=true;addXP(15,"Lesson complete!");if(T.locks.every(x=>S.locks[x.id]&&S.locks[x.id].learned))award("books");}S.step=st.done&&st.q>=l.questions.length?"result":"practice";});break;
+  case "flip":b.classList.toggle("open");sfx("tap");break;
+  case "tc":{const ci=+b.dataset.ci,o=+b.dataset.o;const st=LS(l.id);const c=l.lesson[ci];const s=st.tc[ci]||(st.tc[ci]={wrong:[],ok:false});if(s.ok)return;
+   if(o===0){s.ok=true;sfx("good");if(!s.wrong.length){addXP(5,"Quick Check");}}else{s.wrong.push(o);sfx("bad");}save();render();break;}
+  case "ans":answer(l,+b.dataset.o);break;
+  case "hint":{const st=LS(l.id);const a=st.ans[st.q];a.hint=true;st.noHint=false;save();render();break;}
+  case "sayq":sayQuestion(l,b);break;
+  case "nextq":go(()=>{const st=LS(l.id);st.q++;if(st.q>=l.questions.length){st.lastKey=null;st.lastFirst=null;S.step="result";finalize(l);}});break;
+  case "retake":go(()=>{const st=LS(l.id);st.q=0;st.ans={};st.retake=true;st.lastKey=null;st.lastFirst=null;S.step="practice";});toast("🔁 Retake: no XP this time, but you can upgrade your key!");break;
+  case "vault":go(()=>{S.view="vault";});break;
+  case "spin":{const d=$("#door");d.classList.add("open");sfx("key");setTimeout(()=>{S.vaultOpen=true;award("vault");save();render();confetti(260);setTimeout(()=>confetti(200),900);},1400);break;}
+  case "print":window.print();break;
+  case "sound":S.sound=!S.sound;save();render();sfx("tap");break;
+  case "slow":S.slow=!S.slow;save();render();break;
+  case "reset":if(confirm("Erase ALL progress for this tutorial on this device?")&&confirm("Are you sure? This cannot be undone.")){try{localStorage.removeItem(KEY);}catch(e){}S=fresh();render();}break;
+ }});
+app.addEventListener("keydown",e=>{if(e.target.id==="nm"&&e.key==="Enter"){const btn=document.querySelector('[data-act="name"]');if(btn)btn.click();}});
+window.addEventListener("pagehide",save);
+render();
+})();
+
+</script>
+</body>
+</html>
